@@ -6,29 +6,42 @@
 #include <stdio.h>
 #include <limits.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-} t_list;
 
-typedef struct s_node
+typedef struct s_stack_node
 {
-	long	value;
-	int		indexv;
-} t_node;
+	int	value;
+	int	position;
+	int	destination;
+
+} t_stack_node;
+
+typedef struct s_stack
+{
+	struct s_stack_node	*node;
+	struct s_stack 		*next;
+
+} t_stack;
+
+typedef struct s_chunk
+{
+	int		*values;
+} t_chunk;
 
 // utilities
 int		ft_strlen(const char *str);
 long	ft_atol(char *str);
 int		ft_isdigit(char c);
+int		ft_isspace(char c);
 // input check
 int		check_input(char *str);
 
+// stack utils
+void	pop(t_stack *stack);
+void	push(t_stack *stack);
 // commands
-void	swap_a(t_list *stacka); // swap first 2 elements on stack 'a', nothing if one or less
-void	swap_b(t_list *stackb); // same for b
-void	swap_both(t_list *stack, t_list *stackb); // both of them
+void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less
+void	swap_b(t_stack *stackb); // same for b
+void	swap_both(t_stack *stack, t_stack *stackb); // both of them
 void	push_a(); // first element from 'b' to 'a'
 void	push_b(); // first element from 'a' to 'b'
 void	rotate_a(); // shift up, first become last

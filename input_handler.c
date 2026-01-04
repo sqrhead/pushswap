@@ -7,6 +7,20 @@ int	ft_isdigit(char c)
 	return (1);
 }
 
+int ft_isspace(char c)
+{
+	if (c == ' ' || c >= 9 && c <= 13)
+		return (0);
+	return (1);
+}
+
+int ft_issign(char c)
+{
+	if (c == '-' || c == '+')
+		return (0);
+	return (1);
+}
+
 int	is_input_valid(char *str)
 {
 	int	index;
