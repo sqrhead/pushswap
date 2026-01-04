@@ -34,6 +34,12 @@ int		ft_isdigit(char c);
 int		ft_isspace(char c);
 // input check
 int		check_input(char *str);
+int		count_input_elements(char *str);
+int		parse_single_input(char *str,int *tab);
+int		parse_mul_input(char *str, int *tab);
+
+
+
 
 // stack utils
 void	pop(t_stack *stack);

@@ -62,7 +62,6 @@ int	parse_single_input(char *str,int *tab)
     long		num;
 	int			n_elements;
 
-
 	if (!str)
 		return (1);
 	n_elements = count_input_elements(str);
@@ -74,7 +73,7 @@ int	parse_single_input(char *str,int *tab)
 	if (num > INT_MAX || num < INT_MIN)
 		return (1);
 
-	n_elements = n_elements - index - 1;
+	n_elements = n_elements - index - 1; // index unusable if modified to update realt position
 	tab[n_elements - 1] = num;
 	return (0);
 
@@ -102,17 +101,5 @@ int	parse_mul_input(char *str, int *tab)
 
 int	check_double(int *tab)
 {
-	int	curr;
-	int	index;
 
-
-	if (!tab)
-		return (1);
-
-	index = 0;
-	curr = tab[index];
-	while (tab[index])
-	{
-
-	}
 }
