@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
+/*   Updated: 2026/01/05 09:23:58 by fshelna          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	log_tab(int *tab)
 {
 	while (*tab)
-		printf("%i ",*tab);
+	{
+		printf("%i, ",*tab);
+		tab ++;
+	}
 }
 
 int main(int ac, char **av)
@@ -22,6 +37,9 @@ int main(int ac, char **av)
 		temp_stack = (int *)malloc(sizeof(int) * count_input_elements(av[1]));
 		if (!temp_stack)
 			return (0);
+		if (!parse_single_input(av[1], temp_stack))
+			write(1,"Error\n",ft_strlen("Error\n"));
+		log_tab(temp_stack);
 	}
 	else
 	{

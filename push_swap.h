@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
+/*   Updated: 2026/01/05 11:51:54 by fshelna          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -24,7 +36,8 @@ typedef struct s_stack
 
 typedef struct s_chunk
 {
-	int		*values;
+	int				*values;
+	struct s_chunk	*next;
 } t_chunk;
 
 // utilities
@@ -32,18 +45,17 @@ int		ft_strlen(const char *str);
 long	ft_atol(char *str);
 int		ft_isdigit(char c);
 int		ft_isspace(char c);
+int		ft_issign(char c);
 // input check
 int		check_input(char *str);
 int		count_input_elements(char *str);
 int		parse_single_input(char *str,int *tab);
 int		parse_mul_input(char *str, int *tab);
 
-
-
-
 // stack utils
 void	pop(t_stack *stack);
 void	push(t_stack *stack);
+
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less
 void	swap_b(t_stack *stackb); // same for b

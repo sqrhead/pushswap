@@ -51,5 +51,5 @@ int	check_input(char *str)
 		write(1,"Error\n",ft_strlen("Error\n"));
 		return (1);
 	}
-
+	return (0);
 }

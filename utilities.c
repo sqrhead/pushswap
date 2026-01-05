@@ -15,24 +15,24 @@ int ft_strlen(const char *str)
 
 long ft_atol(char *str)
 {
-	long	result;
-	int		sign;
+	int	index;
+	int	sign;
+	int	result;	
 
-	result = 0;
+	index = 0;
 	sign = 1;
-
-	if(*str == '-' || *str == '+')
+	result = 0;
+	if (ft_issign(str[index]))
 	{
-		if (*str == '-')
-			sign = sign * -1;
-		str ++;
+		if (str[index] == '-')
+			sign *= -1;
+		index ++;
 	}
-	while (*str && ft_isdigit(*str))
+	while (str[index] && ft_isdigit(str[index]))
 	{
-		result = result * 10 + (*str - '0');
-		str ++;
+		result = (result * 10) + str[index] - '0';
+		index ++;
 	}
-
 	return (result * sign);
 }
 
@@ -48,12 +48,23 @@ int	count_input_elements(char *str)
 		if (ft_isdigit(str[i]) || ft_issign(str[i]))
 		{
 			nele ++;
-			while (ft_isdigit(str[i]))
-				i ++;
 		}
-		i ++;
+		while (str[i] && ft_isdigit(str[i]))
+			i ++;
+		while (str[i] && ft_isspace(str[i])) 
+			i ++;
 	}
 	return (nele);
+}
+
+int get_len_str(char *str)
+{
+	int	index;
+
+	index = 0;
+	while (str[index] && !ft_isspace(str[index]))
+		index ++;
+	return (index);
 }
 
 int	parse_single_input(char *str,int *tab)
@@ -65,16 +76,22 @@ int	parse_single_input(char *str,int *tab)
 	if (!str)
 		return (1);
 	n_elements = count_input_elements(str);
-    while (str[index] && (!ft_issign(str[index]) || !ft_isdigit(str[index])))
-        index ++;
-	if (!str[index])
-		return (-1);
-	num = ft_atol(str[index]);
-	if (num > INT_MAX || num < INT_MIN)
-		return (1);
 
-	n_elements = n_elements - index - 1; // index unusable if modified to update realt position
-	tab[n_elements - 1] = num;
+	while (n_elements > 0)
+	{
+		while (str[index] && (!ft_issign(str[index]) || !ft_isdigit(str[index])))
+			index ++;
+		if (!str[index])
+			return (1);
+		num = ft_atol(&str[index]);
+		printf("num %ld\n",num);
+		printf("len %i\n",get_len_str(&str[index])); // Error : 
+		index += get_len_str(&str[index]);
+		if (num > INT_MAX || num < INT_MIN)
+			return (1);
+		tab[n_elements - 1] = num;
+		n_elements --;
+	}	
 	return (0);
 
 }
@@ -85,21 +102,18 @@ int	parse_mul_input(char *str, int *tab)
 	long	num;
 	int		n_elements;
 
-	if (!str)(
+	if (!str)
 		return (1);
 	n_elements = count_input_elements(str);
     while (str[index] && (!ft_issign(str[index]) || !ft_isdigit(str[index])))
 		index ++;
 	if (!str[index])
 		return (-1);
-	num = ft_atol(str[index]);
+	num = ft_atol(&str[index]);
 	if (num > INT_MAX || num < INT_MIN)
 		return (1);
 	tab[n_elements - 1] = num;
 	n_elements --;
-}
 
-int	check_double(int *tab)
-{
-
+	return (0);
 }
