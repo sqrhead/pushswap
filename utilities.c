@@ -22,6 +22,8 @@ long ft_atol(char *str)
 	index = 0;
 	sign = 1;
 	result = 0;
+	while (ft_isspace(str[index]))
+		index ++;
 	if (ft_issign(str[index]))
 	{
 		if (str[index] == '-')
@@ -76,7 +78,7 @@ int	parse_single_input(char *str,int *tab)
 	if (!str)
 		return (1);
 	n_elements = count_input_elements(str);
-
+	
 	while (n_elements > 0)
 	{
 		while (str[index] && (!ft_issign(str[index]) || !ft_isdigit(str[index])))
@@ -84,8 +86,8 @@ int	parse_single_input(char *str,int *tab)
 		if (!str[index])
 			return (1);
 		num = ft_atol(&str[index]);
-		printf("num %ld\n",num);
-		printf("len %i\n",get_len_str(&str[index])); // Error : 
+		printf("num %ld \n",num); // Error : not all elements
+		printf("len %i \n",get_len_str(&str[index])); // Error :  wrong len,maybe because atol doesnt work
 		index += get_len_str(&str[index]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (1);
