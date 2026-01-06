@@ -3,54 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/05 09:23:58 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/06 20:45:37 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	log_tab(int *tab)
+static void	log_tab(long *tab, int size)
 {
-	while (*tab)
+	int index = 0;
+
+	while (index < size)
 	{
-		printf("%i, ",*tab);
-		tab ++;
+		printf("tab element:%ld\n",tab[index]);
+		index ++;
+	}
+
+}
+
+void log_str(char **str)
+{
+	while (*str)
+	{
+		printf("splitted:%s\n",*str);
+		str ++;
 	}
 }
 
+// void bubble_sort(int *tab, int size)
+// {
+// 	int index = 0;
+// 	int temp = 0;
+
+// 	while (index < size)
+// 	{
+
+// 	}
+// }
+
 int main(int ac, char **av)
 {
-	int	*temp_stack;
+	long	*temp_stack;
 
-	if (ac < 2)
+	int n_elements = count_input_elements(av[1]);
+	printf("elements number : %i\n",n_elements);
+	temp_stack = (long *)malloc(sizeof(long) * n_elements);
+	if (!temp_stack)
+	{
+		printf("Failed malloc\n");
 		return (0);
-	if (ac == 2)
-	{
-		if (check_input(av[1]) == -1)
-		{
-			write(1,"Error\n",ft_strlen("Error\n"));
-			return (0);
-		}
-		temp_stack = (int *)malloc(sizeof(int) * count_input_elements(av[1]));
-		if (!temp_stack)
-			return (0);
-		if (!parse_single_input(av[1], temp_stack))
-			write(1,"Error\n",ft_strlen("Error\n"));
-		log_tab(temp_stack);
 	}
-	else
+	char **div = ft_split(av[1],' ');
+	log_str(div);
+	int index = 0;
+	while (div[index])
 	{
-		while(ac - 1 > 0)
-		{
-			if (check_input(av[ac - 1]) == -1)
-			{
-				write(1,"Error\n",ft_strlen("Error\n"));
-				return (0);
-			}
-			ac --;
-		}
+		temp_stack[index] = ft_atol(div[index]);
+		index ++;
 	}
+	log_tab(temp_stack,n_elements);
+
+	free_pp(div);
+	free(temp_stack);
 }

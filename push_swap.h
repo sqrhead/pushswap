@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/05 11:51:54 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/06 18:03:48 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,17 @@ long	ft_atol(char *str);
 int		ft_isdigit(char c);
 int		ft_isspace(char c);
 int		ft_issign(char c);
+
+int		word_len(const char *str, char c);
+int		words_num(const char *s, char c);
+char	**free_pp(char **split);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlcpy(char *dest, char *src, size_t size);
 // input check
 int		check_input(char *str);
 int		count_input_elements(char *str);
-int		parse_single_input(char *str,int *tab);
-int		parse_mul_input(char *str, int *tab);
+int		parse_single_input(char *str, long *tab);
+int		parse_mul_input(char *str, long *tab);
 
 // stack utils
 void	pop(t_stack *stack);
@@ -68,12 +74,5 @@ void	rotate_both();
 void	reverse_rotate_a(); // shift down, last become first
 void	reverse_rotate_b();
 void	reverse_rotate_both();
-
-/*
- * 	a | b
- * 	0
- * 	-1
- *	1
- * */
 
 #endif
