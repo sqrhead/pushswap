@@ -11,19 +11,34 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "cmds.h"
 
 static void	log_tab(long *tab, int size)
 {
 	int index = 0;
-
+	printf("\n==== LONG_TAB ================================\n");
 	while (index < size)
 	{
 		printf("tab element:%ld\n",tab[index]);
 		index ++;
 	}
+	printf("\n==============================================\n");
+
 
 }
 
+static void	log_itab(int *tab, int size)
+{
+	int index = 0;
+	printf("\n=== INT_TAB =================================\n");
+	while (index < size)
+	{
+		printf("tab element:%d\n",tab[index]);
+		index ++;
+	}
+	printf("\n====================================\n");
+
+}
 void log_str(char **str)
 {
 	while (*str)
@@ -33,31 +48,33 @@ void log_str(char **str)
 	}
 }
 //  negative numbers problem
-void bubble_sort(long *tab, int size)
+int	check_duplicate(long *tab, int size)
 {
-	int 	i;
+	int	index;
 	int	j;
-	long	temp;
-	i = 0;
+
+	index = 0;
 	j = 0;
-	while (i < size - 1)
+	while (index < size)
 	{
-		while (j < size - i - 1)
+		j = 0;
+		while (j < size)
 		{
-			if(tab[j + 1] && tab[j] > tab[j + 1])
-			{
-				temp = tab[j];
-				tab[j] = tab[j + 1];
-				tab[j + 1] = temp;
-			}
+			if (index != j && tab[index] == tab[j])
+				return (1);
 			j ++;
 		}
-		i ++;
+		index ++;
 	}
+	return (0);
 }
+// TODO :
+// If space at the end of input, a 0 is given to the *temp_stack
 int main(int ac, char **av)
 {
 	long	*temp_stack;
+	int	*stack_a;
+	int	*stack_b;
 	if (ac < 2) // No Input
 	{
 		printf("Error: no elements passed\n");
@@ -76,7 +93,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	char **div = ft_split(av[1],' ');
-	log_str(div);
+//	log_str(div);
 	int index = 0;
 	while (div[index])
 	{
@@ -90,11 +107,40 @@ int main(int ac, char **av)
 		}
 		index ++;
 	}
-	log_tab(temp_stack, n_elements);
-
+//	log_tab(temp_stack, n_elements);
+	if (check_duplicate(temp_stack,n_elements) == 1)
+	{
+		printf("Error: duplicate\n");
+		free_pp(div);
+		free(temp_stack);
+		return (0);
+	}
 	// sort here && check for duplicates
-	bubble_sort(temp_stack, n_elements);
-	log_tab(temp_stack, n_elements);
+	// create stacks
+	stack_a = (int *)malloc(sizeof(int) * n_elements);
+	stack_b = (int *)malloc(sizeof(int) * n_elements);
+	if (!stack_a || !stack_b)
+		return (0);
+	index = 0;
+	while (index < n_elements)
+	{
+		stack_a[index] = temp_stack[n_elements - index - 1];
+		index ++;
+	}
+
+	log_itab(stack_a,n_elements);
+	sa(stack_a);
+	log_itab(stack_a,n_elements);
+	pb(stack_a, stack_b);
+	log_itab(stack_b, n_elements);
+	log_itab(stack_a, n_elements);
+	pa(stack_a, stack_b);
+	log_itab(stack_b, n_elements);
+	log_itab(stack_a, n_elements);
+
+	free(stack_a);
+	free(stack_b);
 	free_pp(div);
 	free(temp_stack);
+	return (0);
 }
