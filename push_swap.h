@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 12:16:18 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/08 21:23:00 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_stack_node	*stack_get_head(t_stack *stack);
 t_stack_node	*node_new(int value, size_t chunk_n);
 int				stack_get_len(t_stack *stack);
 void			free_stack(t_stack *stack);
+void			stack_pop(t_stack *stack);
+
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less
 void	swap_b(t_stack *stackb); // same for b

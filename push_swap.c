@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 12:15:10 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/08 21:45:56 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "cmds.h"
 
 static void	log_tab(long *tab, int size)
 {
@@ -83,8 +82,6 @@ int	check_duplicate(long *tab, int size)
 int main(int ac, char **av)
 {
 	long	*temp_stack;
-	int	*stack_a;
-	int	*stack_b;
 	t_stack *stacka;
 	t_stack *stackb;
 
@@ -95,7 +92,7 @@ int main(int ac, char **av)
 		printf("Error: no elements passed\n");
 		return (0);
 	}
-	if (check_input(av[1]) == 1) // Input not valid 
+	if (check_input(av[1]) == 1) // Input not valid
 	{
 		return (0);
 	}
@@ -122,7 +119,6 @@ int main(int ac, char **av)
 		}
 		index ++;
 	}
-//	log_tab(temp_stack, n_elements);
 	if (check_duplicate(temp_stack,n_elements) == 1)
 	{
 		printf("Error: duplicate\n");
@@ -130,25 +126,26 @@ int main(int ac, char **av)
 		free(temp_stack);
 		return (0);
 	}
-	// sort here && check for duplicates
-	// create stacks
-	stack_a = (int *)malloc(sizeof(int) * n_elements);
-	stack_b = (int *)malloc(sizeof(int) * n_elements);
-	if (!stack_a || !stack_b)
-		return (0);
 	index = 0;
 	while (index < n_elements)
 	{
-		stack_a[index] = temp_stack[n_elements - index - 1];
+		stack_new_node(&stacka, node_new((int)temp_stack[n_elements - index - 1],0));
 		index ++;
 	}
-	log_tab(temp_stack, n_elements);
-	log_str(div);
-
-	stack_new_node(&stacka, node_new(10,0));
+	int len_stack = stack_get_len(stacka);
+	printf("stacka len:%i\n", len_stack);
+	printf("TOP_STACK_VALUE : %i\n",stacka->node->value);
+	printf("BEFORE\n");
+	log_stack(stacka);
+	stack_pop(stacka);
+	printf("AFTER\n");
+	log_stack(stacka);
+	swap_a(stacka);
+	log_stack(stacka);
 	if (stacka != NULL)
 	{
-		log_stack(stacka);
+		printf("STACK_FREED\n");
+		// log_stack(stacka);
 		free_stack(stacka);
 	}
 	// free_stack(stack_b);

@@ -1,12 +1,11 @@
 #include "push_swap.h"
 
 void			stack_new_node(t_stack **stack, t_stack_node *node)
-{	
+{
 	t_stack_node	*tmp;
-	
-	if (!stack)
+
+	if (!*stack)
 	{
-		printf("stack_not_found\n");
 		*stack = (t_stack*)malloc(sizeof(t_stack));
 		if (!*stack)
 			return;
@@ -20,25 +19,29 @@ void			stack_new_node(t_stack **stack, t_stack_node *node)
 		return ;
 	}
 	tmp = (*stack)->node;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = node;	
+	(*stack)->node = node;
+	(*stack)->node->next = tmp;
 }
-t_stack_node	*stack_get_head(t_stack *stack)
-{	
-	t_stack_node *tmp;
-	if (!stack)
-		return (NULL);
-	tmp = stack->node;
-	while (tmp)
+void	stack_pop(t_stack *stack)
+{
+	t_stack_node	*tmp;
+
+	if (!stack || !stack->node)
+		return;
+	if (!stack->node->next)
 	{
-		if (!tmp->next)
-			return (tmp);
-		tmp = tmp->next;
+		free(stack->node);
+		stack->node = NULL;
+		return;
 	}
-	return (NULL);
+
+	tmp = stack->node;
+	while (tmp->next->next)
+	{
+		tmp = tmp ->next;
+	}
+	free(tmp->next);
+	tmp->next = NULL;
 }
 int				stack_get_len(t_stack *stack)
 {
@@ -57,14 +60,14 @@ int				stack_get_len(t_stack *stack)
 	return (len);
 }
 void	free_stack(t_stack *stack)
-{	
+{
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
 	if (!stack)
 		return;
 	tmp = stack->node;
 	while (tmp)
-	{		
+	{
 		tmp2 = tmp->next;
 		free(tmp);
 		tmp = tmp2;
