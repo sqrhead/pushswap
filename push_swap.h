@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 11:34:20 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/08 12:16:18 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		count_input_elements(char *str);
 int		parse_single_input(char *str, long *tab);
 int		parse_mul_input(char *str, long *tab);
 // stack
-void			stack_new_node(t_stack *stack, t_stack_node *node);
+void			stack_new_node(t_stack **stack, t_stack_node *node);
 t_stack_node	*stack_get_head(t_stack *stack);
 t_stack_node	*node_new(int value, size_t chunk_n);
 int				stack_get_len(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 11:45:48 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/08 12:15:10 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ int main(int ac, char **av)
 	int	*stack_b;
 	t_stack *stacka;
 	t_stack *stackb;
+
+	stacka = NULL;
+	stackb = NULL;
 	if (ac < 2) // No Input
 	{
 		printf("Error: no elements passed\n");
@@ -142,9 +145,12 @@ int main(int ac, char **av)
 	log_tab(temp_stack, n_elements);
 	log_str(div);
 
-	stack_new_node(stacka,node_new(10,0));
-	log_stack(stacka);
-	free_stack(stacka);
+	stack_new_node(&stacka, node_new(10,0));
+	if (stacka != NULL)
+	{
+		log_stack(stacka);
+		free_stack(stacka);
+	}
 	// free_stack(stack_b);
 	free_pp(div);
 	free(temp_stack);

@@ -1,29 +1,30 @@
 #include "push_swap.h"
 
-void			stack_new_node(t_stack *stack, t_stack_node *node)
+void			stack_new_node(t_stack **stack, t_stack_node *node)
 {	
-	t_stack_node	*temp_node;
+	t_stack_node	*tmp;
 	
 	if (!stack)
 	{
-		stack = (t_stack*)malloc(sizeof(t_stack));
-		if (!stack)
+		printf("stack_not_found\n");
+		*stack = (t_stack*)malloc(sizeof(t_stack));
+		if (!*stack)
 			return;
-		stack->node = node;
-		stack->node->next = NULL;
-		return ;
+		(*stack)->node = node;
+		(*stack)->node->next = NULL;
+		return;
 	}
-	if (!stack->node)
+	if (!(*stack)->node)
 	{
 		printf("NULL_NODE\n");
 		return ;
 	}
-	temp_node = stack->node;
-	while (temp_node->next)
+	tmp = (*stack)->node;
+	while (tmp->next)
 	{
-		temp_node = temp_node->next;
+		tmp = tmp->next;
 	}
-	temp_node->next = node;	
+	tmp->next = node;	
 }
 t_stack_node	*stack_get_head(t_stack *stack)
 {	
