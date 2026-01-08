@@ -80,7 +80,7 @@ void	ra(int *sa)
 	int	index;
 
 	len = get_ilen(sa);
-	tmp_two = sa[len - 1]
+	tmp_two = sa[len - 1];
 	index = 0;
 	while (index < len - 1)
 	{

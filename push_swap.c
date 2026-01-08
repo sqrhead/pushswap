@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/06 22:56:11 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/08 11:45:48 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static void	log_tab(long *tab, int size)
 		index ++;
 	}
 	printf("\n==============================================\n");
-
-
 }
-
 static void	log_itab(int *tab, int size)
 {
 	int index = 0;
@@ -36,15 +33,28 @@ static void	log_itab(int *tab, int size)
 		printf("tab element:%d\n",tab[index]);
 		index ++;
 	}
-	printf("\n====================================\n");
+	printf("\n=============================================\n");
 
 }
 void log_str(char **str)
 {
+	printf("\n==== SPLITTED =========================================\n");
 	while (*str)
 	{
-		printf("splitted:%s\n",*str);
+		printf("split element:%s\n",*str);
 		str ++;
+	}
+	printf("\n=======================================================\n");
+}
+void log_stack(t_stack *stack)
+{
+	t_stack_node *tmp;
+	tmp = stack->node;
+	while (tmp)
+	{
+		printf("value:%i\n",tmp->value);
+		printf("chunk:%zu\n",tmp->chunk_n);
+		tmp = tmp->next;
 	}
 }
 //  negative numbers problem
@@ -75,6 +85,8 @@ int main(int ac, char **av)
 	long	*temp_stack;
 	int	*stack_a;
 	int	*stack_b;
+	t_stack *stacka;
+	t_stack *stackb;
 	if (ac < 2) // No Input
 	{
 		printf("Error: no elements passed\n");
@@ -127,19 +139,13 @@ int main(int ac, char **av)
 		stack_a[index] = temp_stack[n_elements - index - 1];
 		index ++;
 	}
+	log_tab(temp_stack, n_elements);
+	log_str(div);
 
-	log_itab(stack_a,n_elements);
-	sa(stack_a);
-	log_itab(stack_a,n_elements);
-	pb(stack_a, stack_b);
-	log_itab(stack_b, n_elements);
-	log_itab(stack_a, n_elements);
-	pa(stack_a, stack_b);
-	log_itab(stack_b, n_elements);
-	log_itab(stack_a, n_elements);
-
-	free(stack_a);
-	free(stack_b);
+	stack_new_node(stacka,node_new(10,0));
+	log_stack(stacka);
+	free_stack(stacka);
+	// free_stack(stack_b);
 	free_pp(div);
 	free(temp_stack);
 	return (0);

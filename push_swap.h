@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/06 18:03:48 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/08 11:34:20 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,16 @@
 
 typedef struct s_stack_node
 {
-	int	value;
-	int	position;
-	int	destination;
-
+	int					value;
+	size_t				chunk_n;
+	int					weight;
+	struct s_stack_node	*next;
 } t_stack_node;
 
 typedef struct s_stack
 {
-	struct s_stack_node	*node;
-	struct s_stack 		*next;
-
+	struct s_stack_node		*node;
 } t_stack;
-
-typedef struct s_chunk
-{
-	int				*values;
-	struct s_chunk	*next;
-} t_chunk;
 
 // utilities
 int		ft_strlen(const char *str);
@@ -57,22 +49,23 @@ int		check_input(char *str);
 int		count_input_elements(char *str);
 int		parse_single_input(char *str, long *tab);
 int		parse_mul_input(char *str, long *tab);
-
-// stack utils
-void	pop(t_stack *stack);
-void	push(t_stack *stack);
-
+// stack
+void			stack_new_node(t_stack *stack, t_stack_node *node);
+t_stack_node	*stack_get_head(t_stack *stack);
+t_stack_node	*node_new(int value, size_t chunk_n);
+int				stack_get_len(t_stack *stack);
+void			free_stack(t_stack *stack);
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less
 void	swap_b(t_stack *stackb); // same for b
-void	swap_both(t_stack *stack, t_stack *stackb); // both of them
-void	push_a(); // first element from 'b' to 'a'
-void	push_b(); // first element from 'a' to 'b'
-void	rotate_a(); // shift up, first become last
-void	rotate_b();
-void	rotate_both();
-void	reverse_rotate_a(); // shift down, last become first
-void	reverse_rotate_b();
-void	reverse_rotate_both();
+void	swap_both(t_stack *stacka, t_stack *stackb); // both of them
+void	push_a(t_stack *stacka, t_stack *stackb); // first element from 'b' to 'a'
+void	push_b(t_stack *stacka, t_stack *stackb); // first element from 'a' to 'b'
+void	rotate_a(t_stack *stacka); // shift up, first become last
+void	rotate_b(t_stack *stackb);
+void	rotate_both(t_stack *stacka, t_stack *stackb);
+void	reverse_rotate_a(t_stack *stacka); // shift down, last become first
+void	reverse_rotate_b(t_stack *stackb);
+void	reverse_rotate_both(t_stack *stacka, t_stack *stackb);
 
 #endif
