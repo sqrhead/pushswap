@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 21:45:56 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/09 10:21:43 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ void log_str(char **str)
 	}
 	printf("\n=======================================================\n");
 }
-void log_stack(t_stack *stack)
-{
+void log_stack(t_stack *stack, char ws)
+{	
+	printf("***** STACK [%c]************************\n",ws);
 	t_stack_node *tmp;
 	tmp = stack->node;
 	while (tmp)
 	{
 		printf("value:%i\n",tmp->value);
-		printf("chunk:%zu\n",tmp->chunk_n);
+		// printf("chunk:%zu\n",tmp->chunk_n);
 		tmp = tmp->next;
 	}
 }
@@ -85,8 +86,14 @@ int main(int ac, char **av)
 	t_stack *stacka;
 	t_stack *stackb;
 
-	stacka = NULL;
-	stackb = NULL;
+	stacka  = (t_stack *)malloc(sizeof(t_stack));
+	stackb  = (t_stack *)malloc(sizeof(t_stack));
+	if (!stacka || !stackb)
+		return (0);
+	stacka->node = NULL;
+	stackb->node = NULL;
+	
+
 	if (ac < 2) // No Input
 	{
 		printf("Error: no elements passed\n");
@@ -134,17 +141,13 @@ int main(int ac, char **av)
 	}
 	int len_stack = stack_get_len(stacka);
 	printf("stacka len:%i\n", len_stack);
-	printf("TOP_STACK_VALUE : %i\n",stacka->node->value);
-	printf("BEFORE\n");
-	log_stack(stacka);
-	stack_pop(stacka);
-	printf("AFTER\n");
-	log_stack(stacka);
-	swap_a(stacka);
-	log_stack(stacka);
+	printf("*** TOP_STACK_VALUE : %i\n",stacka->node->value);
+	rotate_a(stacka);
+	rotate_a(stacka);
+	log_stack(stacka, 'A');
 	if (stacka != NULL)
 	{
-		printf("STACK_FREED\n");
+		printf("********* STACK_FREED *******************\n");
 		// log_stack(stacka);
 		free_stack(stacka);
 	}

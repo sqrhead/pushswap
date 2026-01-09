@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/08 21:23:00 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:18:18 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@
 #include <stdio.h>
 #include <limits.h>
 
-
 typedef struct s_stack_node
 {
 	int					value;
 	size_t				chunk_n;
-	int					weight;
 	struct s_stack_node	*next;
 } t_stack_node;
 

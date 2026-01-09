@@ -13,11 +13,6 @@ void			stack_new_node(t_stack **stack, t_stack_node *node)
 		(*stack)->node->next = NULL;
 		return;
 	}
-	if (!(*stack)->node)
-	{
-		printf("NULL_NODE\n");
-		return ;
-	}
 	tmp = (*stack)->node;
 	(*stack)->node = node;
 	(*stack)->node->next = tmp;
@@ -28,20 +23,9 @@ void	stack_pop(t_stack *stack)
 
 	if (!stack || !stack->node)
 		return;
-	if (!stack->node->next)
-	{
-		free(stack->node);
-		stack->node = NULL;
-		return;
-	}
-
 	tmp = stack->node;
-	while (tmp->next->next)
-	{
-		tmp = tmp ->next;
-	}
-	free(tmp->next);
-	tmp->next = NULL;
+	stack->node = stack->node->next;
+	free(tmp);
 }
 int				stack_get_len(t_stack *stack)
 {
