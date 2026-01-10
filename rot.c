@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 void	rotate_a(t_stack *stacka)
-{	
+{
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
 	if (!stacka || !stacka->node)
@@ -35,11 +35,12 @@ void	rotate_b(t_stack *stackb)
 	}
 	tmp2->next = tmp;
 	tmp2->next->next = NULL;
-	write(1," ra\n", 3);
+	write(1," rb\n", 3);
 }
 
 void	rotate_both(t_stack *stacka, t_stack *stackb)
 {
 	rotate_a(stacka);
 	rotate_b(stackb);
+	write(1, "rr\n", 3);
 }

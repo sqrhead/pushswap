@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/09 12:18:18 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/10 21:30:34 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,22 @@ char	**free_pp(char **split);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dest, char *src, size_t size);
 // input check
+int		check_duplicate(long *tab, int size);
 int		check_input(char *str);
 int		count_input_elements(char *str);
 int		parse_single_input(char *str, long *tab);
 int		parse_mul_input(char *str, long *tab);
 // stack
 void			stack_new_node(t_stack **stack, t_stack_node *node);
-t_stack_node	*stack_get_head(t_stack *stack);
 t_stack_node	*node_new(int value, size_t chunk_n);
+t_stack_node	*stack_get_head(t_stack *stack);
 int				stack_get_len(t_stack *stack);
-void			free_stack(t_stack *stack);
 void			stack_pop(t_stack *stack);
+void			free_stack(t_stack *stack);
+
+// chunk
+void	bubble_sort(long *tab, int len);
+void	generate_chunks(long *tab, t_stack **stack);
 
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/09 10:21:43 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/10 21:31:17 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,37 +46,16 @@ void log_str(char **str)
 	printf("\n=======================================================\n");
 }
 void log_stack(t_stack *stack, char ws)
-{	
+{
 	printf("***** STACK [%c]************************\n",ws);
 	t_stack_node *tmp;
 	tmp = stack->node;
 	while (tmp)
 	{
-		printf("value:%i\n",tmp->value);
+		printf("value : [ %i ] chunk_n : [ %ld ]\n",tmp->value, tmp->chunk_n);
 		// printf("chunk:%zu\n",tmp->chunk_n);
 		tmp = tmp->next;
 	}
-}
-//  negative numbers problem
-int	check_duplicate(long *tab, int size)
-{
-	int	index;
-	int	j;
-
-	index = 0;
-	j = 0;
-	while (index < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (index != j && tab[index] == tab[j])
-				return (1);
-			j ++;
-		}
-		index ++;
-	}
-	return (0);
 }
 // TODO :
 // If space at the end of input, a 0 is given to the *temp_stack
@@ -92,7 +71,7 @@ int main(int ac, char **av)
 		return (0);
 	stacka->node = NULL;
 	stackb->node = NULL;
-	
+
 
 	if (ac < 2) // No Input
 	{
@@ -142,9 +121,12 @@ int main(int ac, char **av)
 	int len_stack = stack_get_len(stacka);
 	printf("stacka len:%i\n", len_stack);
 	printf("*** TOP_STACK_VALUE : %i\n",stacka->node->value);
-	rotate_a(stacka);
-	rotate_a(stacka);
+	log_tab(temp_stack, n_elements);
+	bubble_sort(temp_stack, n_elements);
+	log_tab(temp_stack, n_elements);
+	generate_chunks(temp_stack, &stacka);
 	log_stack(stacka, 'A');
+
 	if (stacka != NULL)
 	{
 		printf("********* STACK_FREED *******************\n");
