@@ -31,5 +31,3 @@ void	bubble_sort(long *tab, int len)
 	}
 }
 
-// void	sort_stack()
-// {}

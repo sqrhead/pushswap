@@ -44,7 +44,7 @@ t_stack_node	*get_node(t_stack *stack, size_t index)
 
 size_t	get_index(t_stack *stack, int value)
 {
-	size_t	index;
+	size_t			index;
 	t_stack_node	*node;
 
 	if (!stack || !stack->node)
@@ -53,9 +53,10 @@ size_t	get_index(t_stack *stack, int value)
 	node = stack->node;
 	while (node)
 	{
+		if (node->index == value)
+			return (index);
+		node = node->next;
 		index ++;
-		node->value = value;
-		return (index);
 	}
 	return (-1);
 }

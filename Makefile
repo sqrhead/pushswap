@@ -1,7 +1,9 @@
 all :
 	cc *.c -opushswap
 
-runl:
+runs:
 	sh runner.sh
 runm:
 	sh runner_mid.sh
+runl:
+	sh runner_large.sh

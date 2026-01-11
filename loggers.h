@@ -1,0 +1,51 @@
+#ifndef LOGGERS_H
+#define LOGGERS_H
+
+#include "push_swap.h"
+
+static void	log_tab(long *tab, int size)
+{
+	int index = 0;
+	printf("\n==== LONG_TAB ================================\n");
+	while (index < size)
+	{
+		printf("tab element:%ld\n",tab[index]);
+		index ++;
+	}
+	printf("\n==============================================\n");
+}
+static void	log_itab(int *tab, int size)
+{
+	int index = 0;
+	printf("\n=== INT_TAB =================================\n");
+	while (index < size)
+	{
+		printf("tab element:%d\n",tab[index]);
+		index ++;
+	}
+	printf("\n=============================================\n");
+
+}
+static void log_str(char **str)
+{
+	printf("\n==== SPLITTED =========================================\n");
+	while (*str)
+	{
+		printf("split element:%s\n",*str);
+		str ++;
+	}
+	printf("\n=======================================================\n");
+}
+static void log_stack(t_stack *stack, char ws)
+{
+	printf("***** STACK [%c]************************\n",ws);
+	t_stack_node *tmp;
+	tmp = stack->node;
+	while (tmp)
+	{
+		printf("[value : [ %i ]] [chunk_n : [ %ld ]][index : [ %ld]] \n",tmp->value, tmp->chunk_n, tmp->index);
+		// printf("chunk:%zu\n",tmp->chunk_n);
+		tmp = tmp->next;
+	}
+}
+#endif

@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 20:51:41 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 23:24:35 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack_node
 {
 	int					value;
 	size_t				chunk_n;
+	size_t				index;
 	struct s_stack_node	*next;
 } t_stack_node;
 
@@ -57,15 +58,16 @@ void			stack_pop(t_stack *stack);
 void			free_stack(t_stack *stack);
 t_stack_node	*get_node(t_stack *stack, size_t index);
 int				stack_is_sorted(t_stack *stack);
-
+size_t			get_index(t_stack *stack, int value);
 // chunk
-void	bubble_sort(long *tab, int len);
 void	generate_chunks(long *tab, t_stack **stack);
 int		chunk_get_size(int stack_size);
 int		chunk_contain(int chunk_n, t_stack *stack);
 
 // sort
-void sort_three(t_stack *stack);
+void	bubble_sort(long *tab, int len);
+void 	sort_three(t_stack *stack);
+void	sort_five(t_stack *stack);
 
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less

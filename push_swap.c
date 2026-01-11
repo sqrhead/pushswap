@@ -6,57 +6,13 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 20:51:13 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 23:20:43 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "loggers.h"
 
-static void	log_tab(long *tab, int size)
-{
-	int index = 0;
-	printf("\n==== LONG_TAB ================================\n");
-	while (index < size)
-	{
-		printf("tab element:%ld\n",tab[index]);
-		index ++;
-	}
-	printf("\n==============================================\n");
-}
-static void	log_itab(int *tab, int size)
-{
-	int index = 0;
-	printf("\n=== INT_TAB =================================\n");
-	while (index < size)
-	{
-		printf("tab element:%d\n",tab[index]);
-		index ++;
-	}
-	printf("\n=============================================\n");
-
-}
-void log_str(char **str)
-{
-	printf("\n==== SPLITTED =========================================\n");
-	while (*str)
-	{
-		printf("split element:%s\n",*str);
-		str ++;
-	}
-	printf("\n=======================================================\n");
-}
-void log_stack(t_stack *stack, char ws)
-{
-	printf("***** STACK [%c]************************\n",ws);
-	t_stack_node *tmp;
-	tmp = stack->node;
-	while (tmp)
-	{
-		printf("value : [ %i ] chunk_n : [ %ld ]\n",tmp->value, tmp->chunk_n);
-		// printf("chunk:%zu\n",tmp->chunk_n);
-		tmp = tmp->next;
-	}
-}
 // TODO :
 // If space at the end of input, a 0 is given to the *temp_stack
 int main(int ac, char **av)
@@ -127,7 +83,13 @@ int main(int ac, char **av)
 	chunk_size = chunk_get_size(n_elements);
 	int	chunk_index = 0;
 	if (chunk_size == 0)
+	{
 		printf("**** CHUNK_SIZE [ 0 ] **** \n");
+		if (n_elements == 3)
+			sort_three(stacka);
+		else
+			sort_five(stacka);
+	}
 	else
 	{
 		while (chunk_index  < chunk_size)
@@ -145,18 +107,22 @@ int main(int ac, char **av)
 	int lenb = stack_get_len(stackb);
 	while (lenb > 0)
 	{
-		if (stackb->node->value > get_node(stackb, stack_get_len(stackb) - 1)->value)
-			swap_b(stackb);
+		// if (!stackb || !stackb->node)  // ← add this
+        // 	break;
+		while (stackb->node->index != lenb - 1)
+		{
+			// if (!stackb || !stackb->node)  // ← and here
+            // 	break;
+			if (get_index(stackb, lenb -1) < lenb / 2)
+				rotate_b(stackb);
+			else
+				reverse_rotate_b(stackb);
+		}
 		push_a(stacka, stackb);
-		push_a(stacka, stackb);
-		push_a(stacka, stackb);
-		sort_three(stacka);
-		// if (stacka->node->value > get_node(stacka, stack_get_len(stacka) - 1)->value)
-		// 	swap_a(stacka);
 		lenb = stack_get_len(stackb);
 	}
-	log_stack(stacka, 'A');
-	log_stack(stackb, 'B');
+	// log_stack(stacka, 'A');
+	// log_stack(stackb, 'B');
 	if (stack_is_sorted(stacka) == 0)
 		printf("************* SORTED ******************\n");
 	if (stacka != NULL)

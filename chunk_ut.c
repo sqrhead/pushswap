@@ -58,6 +58,7 @@ void generate_chunks(long *tab, t_stack **stack)
 			j ++;
 		}
 		tmp->chunk_n = j;
+		tmp->index = i;
 		tmp = (*stack)->node;
 		i ++;
 	}
