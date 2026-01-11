@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 23:24:35 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 23:46:45 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		chunk_contain(int chunk_n, t_stack *stack);
 // sort
 void	bubble_sort(long *tab, int len);
 void 	sort_three(t_stack *stack);
-void	sort_five(t_stack *stack);
+void	sort_five(t_stack *stacka, t_stack *stackb);
 
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less

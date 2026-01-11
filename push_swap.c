@@ -6,15 +6,13 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 23:36:50 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 23:46:51 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "loggers.h"
 
-// TODO :
-// If space at the end of input, a 0 is given to the *temp_stack
 int main(int ac, char **av)
 {
 	long	*temp_stack;
@@ -29,24 +27,17 @@ int main(int ac, char **av)
 	stacka->node = NULL;
 	stackb->node = NULL;
 
-
 	if (ac < 2) // No Input
 	{
-		printf("Error: no elements passed\n");
+		write(1,"Error\n",ft_strlen("Error\n"));
 		return (0);
 	}
 	if (check_input(av[1]) == 1) // Input not valid
-	{
 		return (0);
-	}
 	int n_elements = count_input_elements(av[1]);
-	printf("elements number : %i\n",n_elements);
 	temp_stack = (long *)malloc(sizeof(long) * n_elements);
 	if (!temp_stack)
-	{
-		printf("Failed malloc\n");
 		return (0);
-	}
 	char **div = ft_split(av[1],' ');
 //	log_str(div);
 	int index = 0;
@@ -55,7 +46,7 @@ int main(int ac, char **av)
 		temp_stack[index] = ft_atol(div[index]);
 		if (temp_stack[index] > INT_MAX || temp_stack[index] < INT_MIN)
 		{
-			printf("Error: OVERFLOW || UNDERFLOW\n");
+			write(1,"Error\n",ft_strlen("Error\n"));
 			free_pp(div);
 			free(temp_stack);
 			return (0);
@@ -64,7 +55,7 @@ int main(int ac, char **av)
 	}
 	if (check_duplicate(temp_stack,n_elements) == 1)
 	{
-		printf("Error: duplicate\n");
+		write(1,"Error\n",ft_strlen("Error\n"));
 		free_pp(div);
 		free(temp_stack);
 		return (0);
@@ -76,8 +67,6 @@ int main(int ac, char **av)
 		index ++;
 	}
 	int len_stack = stack_get_len(stacka);
-	printf("stacka len:%i\n", len_stack);
-	printf("*** TOP_STACK_VALUE : %i\n",stacka->node->value);
 	bubble_sort(temp_stack, n_elements);
 	generate_chunks(temp_stack, &stacka);
 	chunk_size = chunk_get_size(n_elements);
@@ -88,7 +77,7 @@ int main(int ac, char **av)
 		if (n_elements == 3)
 			sort_three(stacka);
 		else
-			sort_five(stacka);
+			sort_five(stacka, stackb);
 	}
 	else
 	{
@@ -117,14 +106,12 @@ int main(int ac, char **av)
 		push_a(stacka, stackb);
 		lenb = stack_get_len(stackb);
 	}
-	// log_stack(stacka, 'A');
-	// log_stack(stackb, 'B');
+
 	if (stack_is_sorted(stacka) == 0)
 		printf("************* SORTED ******************\n");
 	if (stacka != NULL)
 	{
 		printf("********* STACK_FREED *******************\n");
-		// log_stack(stacka);
 		free_stack(stacka);
 	}
 	// free_stack(stack_b);
