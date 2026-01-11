@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 23:20:43 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 23:36:50 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,8 @@ int main(int ac, char **av)
 	int lenb = stack_get_len(stackb);
 	while (lenb > 0)
 	{
-		// if (!stackb || !stackb->node)  // ← add this
-        // 	break;
 		while (stackb->node->index != lenb - 1)
 		{
-			// if (!stackb || !stackb->node)  // ← and here
-            // 	break;
 			if (get_index(stackb, lenb -1) < lenb / 2)
 				rotate_b(stackb);
 			else

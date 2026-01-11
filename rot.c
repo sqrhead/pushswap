@@ -35,7 +35,7 @@ void	rotate_b(t_stack *stackb)
 	}
 	tmp2->next = tmp;
 	tmp2->next->next = NULL;
-	write(1," rb\n", 3);
+	write(1,"rb\n", 3);
 }
 
 void	rotate_both(t_stack *stacka, t_stack *stackb)

@@ -23,8 +23,10 @@ int	chunk_get_size(int stack_size)
 {
 	if (stack_size <= 5)
 		return (0);
-	if (stack_size <= 50)
-		return (10);
+	else if (stack_size <= 10)
+		return (3);
+	else if (stack_size <= 50)
+		return (5);
 	else if (stack_size <= 100)
 		return (stack_size / 6);
 	else if (stack_size <= 500)
