@@ -21,21 +21,58 @@ int	check_duplicate(long *tab, int size)
 	return (0);
 }
 
-t_stack *stack_clone(t_stack *stack)
+t_stack_node	*get_node(t_stack *stack, size_t index)
 {
-	t_stack			*stackc;
+	size_t				i;
 	t_stack_node	*tmp;
 
 	if (!stack || !stack->node)
 		return (NULL);
-	stackc = (t_stack *)malloc(sizeof(t_stack));
-	if (!stackc)
-		return (NULL);
+	i = 0;
 	tmp = stack->node;
 	while (tmp)
 	{
-		stack_new_node(&stack, node_new(tmp->value, tmp->chunk_n));
+		i++;
+		if (i == index)
+		{
+			return (tmp);
+		}
 		tmp = tmp->next;
 	}
-	return (stackc);
+	return (NULL);
 }
+
+size_t	get_index(t_stack *stack, int value)
+{
+	size_t	index;
+	t_stack_node	*node;
+
+	if (!stack || !stack->node)
+		return (-1);
+	index = 0;
+	node = stack->node;
+	while (node)
+	{
+		index ++;
+		node->value = value;
+		return (index);
+	}
+	return (-1);
+}
+
+int	stack_is_sorted(t_stack *stack)
+{
+	t_stack_node *node;
+
+	if (!stack || !stack->node)
+		return (-1);
+	node = stack->node;
+	while (node)
+	{
+		if (node->next && node->value > node->next->value)
+			return (1);
+		node = node->next;
+	}
+	return (0);
+}
+

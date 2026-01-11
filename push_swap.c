@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/10 21:31:17 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/11 20:51:13 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int main(int ac, char **av)
 	long	*temp_stack;
 	t_stack *stacka;
 	t_stack *stackb;
+	int		chunk_size;
 
 	stacka  = (t_stack *)malloc(sizeof(t_stack));
 	stackb  = (t_stack *)malloc(sizeof(t_stack));
@@ -121,12 +122,43 @@ int main(int ac, char **av)
 	int len_stack = stack_get_len(stacka);
 	printf("stacka len:%i\n", len_stack);
 	printf("*** TOP_STACK_VALUE : %i\n",stacka->node->value);
-	log_tab(temp_stack, n_elements);
 	bubble_sort(temp_stack, n_elements);
-	log_tab(temp_stack, n_elements);
 	generate_chunks(temp_stack, &stacka);
+	chunk_size = chunk_get_size(n_elements);
+	int	chunk_index = 0;
+	if (chunk_size == 0)
+		printf("**** CHUNK_SIZE [ 0 ] **** \n");
+	else
+	{
+		while (chunk_index  < chunk_size)
+		{
+			while (chunk_contain(chunk_index, stacka) == 0)
+			{
+				// find number index
+				while (stacka->node->chunk_n != chunk_index)
+					rotate_a(stacka);
+				push_b(stacka, stackb);
+			}
+			chunk_index ++;
+		}
+	}
+	int lenb = stack_get_len(stackb);
+	while (lenb > 0)
+	{
+		if (stackb->node->value > get_node(stackb, stack_get_len(stackb) - 1)->value)
+			swap_b(stackb);
+		push_a(stacka, stackb);
+		push_a(stacka, stackb);
+		push_a(stacka, stackb);
+		sort_three(stacka);
+		// if (stacka->node->value > get_node(stacka, stack_get_len(stacka) - 1)->value)
+		// 	swap_a(stacka);
+		lenb = stack_get_len(stackb);
+	}
 	log_stack(stacka, 'A');
-
+	log_stack(stackb, 'B');
+	if (stack_is_sorted(stacka) == 0)
+		printf("************* SORTED ******************\n");
 	if (stacka != NULL)
 	{
 		printf("********* STACK_FREED *******************\n");
