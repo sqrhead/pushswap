@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/11 23:46:51 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/12 11:00:48 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,15 @@ int main(int ac, char **av)
 	int	chunk_index = 0;
 	if (chunk_size == 0)
 	{
-		printf("**** CHUNK_SIZE [ 0 ] **** \n");
-		if (n_elements == 3)
-			sort_three(stacka);
+		printf("**** CHUNK_SIZE_ZERO **** \n");
+		if (n_elements <= 3)
+			sort_three(&stacka);
 		else
 			sort_five(stacka, stackb);
 	}
 	else
-	{
+	{	
+		// push b
 		while (chunk_index  < chunk_size)
 		{
 			while (chunk_contain(chunk_index, stacka) == 0)
@@ -92,19 +93,20 @@ int main(int ac, char **av)
 			}
 			chunk_index ++;
 		}
-	}
-	int lenb = stack_get_len(stackb);
-	while (lenb > 0)
-	{
-		while (stackb->node->index != lenb - 1)
+		// push a 
+		int lenb = stack_get_len(stackb);
+		while (lenb > 0)
 		{
-			if (get_index(stackb, lenb -1) < lenb / 2)
-				rotate_b(stackb);
-			else
-				reverse_rotate_b(stackb);
+			while (stackb->node->index != lenb - 1)
+			{
+				if (get_index(stackb, lenb -1) < lenb / 2)
+					rotate_b(stackb);
+				else
+					reverse_rotate_b(stackb);
+			}
+			push_a(stacka, stackb);
+			lenb = stack_get_len(stackb);
 		}
-		push_a(stacka, stackb);
-		lenb = stack_get_len(stackb);
 	}
 
 	if (stack_is_sorted(stacka) == 0)
@@ -113,6 +115,7 @@ int main(int ac, char **av)
 	{
 		printf("********* STACK_FREED *******************\n");
 		free_stack(stacka);
+		free_stack(stackb);
 	}
 	// free_stack(stack_b);
 	free_pp(div);
