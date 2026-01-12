@@ -38,22 +38,20 @@ void	sort_three(t_stack **stack)
 	int	n2;
 	int	n3;
 	// if too long pass it outside 
-	printf("****** _BEFORE_SORT_THREE_ *******\n");
 	if ((*stack) && (*stack)->node && stack_get_len(*stack) < 3)
 	{	
-		printf("******** FEW_ELEMENTS *********\n");
 		if ((*stack)->node->next && 
 				(*stack)->node->value > (*stack)->node->next->value)
 			swap_a((*stack));
 		return;	
 	}
-	printf("****** _SORT_THREE_ *******\n");
 	if (!(*stack) || !(*stack)->node || stack_get_len(*stack) != 3)
 		return;
 	n1 = (int)(*stack)->node->value;
 	n2 = (int)(*stack)->node->next->value;
 	n3 = (int)(*stack)->node->next->next->value;
 	
+	printf("Sorting Three ... \n");
 	if (n1 < n2 && n1 > n2 && n2 > n3)
 		reverse_rotate_a(*stack);
 	else if (n1 > n2 && n1 > n3 && n2 > n3)
@@ -72,7 +70,6 @@ void	sort_three(t_stack **stack)
 		swap_a(*stack);
 	else 
 		return;
-	log_stack(*stack, 'A');
 }
 int	get_smallest(t_stack *stack)
 {
@@ -94,7 +91,7 @@ int	get_smallest(t_stack *stack)
 	}
 	return (index);
 }
-void	sort_five(t_stack *stacka, t_stack *stackb)
+void	sort_five(t_stack **stacka, t_stack **stackb)
 {	
 	int				len;
 	int				index;
@@ -102,4 +99,15 @@ void	sort_five(t_stack *stacka, t_stack *stackb)
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
 
+	tmp = get_node(*stacka, (size_t)get_smallest(*stacka));
+	while ((*stacka)->node != tmp)
+		rotate_a(*stacka);
+	push_b(*stacka, *stackb);
+	tmp = get_node(*stacka, (size_t)get_smallest(*stacka));
+	while ((*stacka)->node != tmp)
+		rotate_a(*stacka);
+	push_b(*stacka, *stackb);
+	sort_three(stacka);
+	push_a(*stacka, *stackb);
+	push_a(*stacka, *stackb);
 }

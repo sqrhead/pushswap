@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 11:00:48 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/12 12:29:54 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(int ac, char **av)
 		if (n_elements <= 3)
 			sort_three(&stacka);
 		else
-			sort_five(stacka, stackb);
+			sort_five(&stacka, &stackb);
 	}
 	else
 	{	
