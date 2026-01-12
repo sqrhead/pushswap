@@ -66,6 +66,12 @@ void	sort_three(t_stack **stack)
 		reverse_rotate_a(*stack);
 		swap_a(*stack);
 	}
+	else if (n1 > n2 && n1 > n3 && n2 < n3)
+		rotate_a(*stack);
+	else if (n1 > n2 && n1 < n3 && n2 < n3)
+		swap_a(*stack);
+	else 
+		return;
 	log_stack(*stack, 'A');
 }
 size_t	get_smallest(t_stack *stack)
