@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include "loggers.h"
 
 void	bubble_sort(long *tab, int len)
 {
@@ -100,7 +99,6 @@ int	get_smallest(t_stack *stack)
 void	sort_five(t_stack **stacka, t_stack **stackb)
 {
 	int				len;
-	int				index;
 	int				pos;
 	t_stack_node	*tmp;
 
@@ -133,10 +131,8 @@ void	sort_five(t_stack **stacka, t_stack **stackb)
 
 void	mega_sort(t_stack *stacka, t_stack *stackb, long *temp_stack, int n_elements)
 {
-	int 	len_stack;
 	int		chunk_size;
 
-	len_stack = stack_get_len(stacka);
 	bubble_sort(temp_stack, n_elements);
 	generate_chunks(temp_stack, &stacka);
 	chunk_size = chunk_get_size(n_elements);

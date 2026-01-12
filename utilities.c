@@ -79,6 +79,7 @@ int	parse_single_input(char *str,long *tab)
 	int		index;
 
 	div = ft_split(str,' ');
+	index = 0;
 	while (div[index])
 	{
 		tab[index] = ft_atol(div[index]);
@@ -107,6 +108,7 @@ int	parse_mul_input(char **str, long *tab, int n_elements)
 			write(1,"Error\n",ft_strlen("Error\n"));
 			return (1);
 		}
+		index ++;
 	}
 	return (0);
 }

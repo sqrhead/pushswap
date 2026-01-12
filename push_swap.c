@@ -6,13 +6,11 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 22:50:37 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/12 23:24:56 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "loggers.h"
-
 
 int main(int ac, char **av)
 {
@@ -38,6 +36,7 @@ int main(int ac, char **av)
 		return (0);
 	if (ac == 2)
 	{
+		printf("*** Single Input\n");
 		n_elements = count_input_elements(av[1]);
 		temp_stack = (long *)malloc(sizeof(long) * n_elements);
 		if (!temp_stack)
@@ -47,6 +46,7 @@ int main(int ac, char **av)
 	}
 	else if (ac > 2)
 	{
+		printf("*** Multiple Input\n");
 		n_elements = ac - 1;
 		temp_stack = (long *)malloc(sizeof(long) * n_elements);
 		if (!temp_stack)
@@ -56,6 +56,8 @@ int main(int ac, char **av)
 			return (0);
 		}
 	}
+	printf("*** Out\n");
+
 	// char **div = ft_split(av[1],' ');
 
 	// int read_index = 0;

@@ -16,7 +16,7 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 	{
 		while (chunk_contain(chunk_index, stacka) == 0)
 		{
-			while (stacka->node->chunk_n != chunk_index)
+			while (stacka->node->chunk_n != (size_t)chunk_index)
 				rotate_a(stacka);
 			push_b(stacka, stackb);
 		}
@@ -25,9 +25,9 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 	lenb = stack_get_len(stackb);
 	while (lenb > 0)
 	{
-		while (stackb->node->index != lenb - 1)
+		while (stackb->node->index != (size_t)(lenb - 1))
 		{
-			if (get_index(stackb, lenb -1) < lenb / 2)
+			if (get_index(stackb, lenb -1) < (size_t)(lenb / 2))
 				rotate_b(stackb);
 			else
 				reverse_rotate_b(stackb);

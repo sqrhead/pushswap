@@ -12,7 +12,7 @@ int	chunk_contain(int chunk_n, t_stack *stack)
 	tmp = stack->node;
 	while (tmp)
 	{
-		if (tmp->chunk_n == chunk_n)
+		if (tmp->chunk_n == (size_t)chunk_n)
 			return (0);
 		tmp = tmp->next;
 	}

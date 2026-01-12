@@ -53,7 +53,7 @@ size_t	get_index(t_stack *stack, int value)
 	node = stack->node;
 	while (node)
 	{
-		if (node->index == value)
+		if (node->index == (size_t)value)
 			return (index);
 		node = node->next;
 		index ++;
