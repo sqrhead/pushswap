@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void			stack_new_node(t_stack **stack, t_stack_node *node)
+void	stack_new_node(t_stack **stack, t_stack_node *node)
 {
 	t_stack_node	*tmp;
 
@@ -27,7 +27,7 @@ void	stack_pop(t_stack *stack)
 	stack->node = stack->node->next;
 	free(tmp);
 }
-int				stack_get_len(t_stack *stack)
+int	stack_get_len(t_stack *stack)
 {
 	int	len;
 	t_stack_node *tmp;

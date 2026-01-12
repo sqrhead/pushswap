@@ -32,11 +32,11 @@ t_stack_node	*get_node(t_stack *stack, size_t index)
 	tmp = stack->node;
 	while (tmp)
 	{
-		i++;
 		if (i == index)
 		{
 			return (tmp);
 		}
+		i++;
 		tmp = tmp->next;
 	}
 	return (NULL);

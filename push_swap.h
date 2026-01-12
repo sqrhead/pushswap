@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 12:29:30 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/12 21:26:13 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ int		chunk_contain(int chunk_n, t_stack *stack);
 void	bubble_sort(long *tab, int len);
 void 	sort_three(t_stack **stack);
 void	sort_five(t_stack **stacka, t_stack **stackb);
+void	mega_sort(t_stack *stacka, t_stack *stackb, long *temp_stack, int n_elements);
+void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index);
+void	sort_low(t_stack *stacka, t_stack *stackb, int n_elements);
 
 // commands
 void	swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less

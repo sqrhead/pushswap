@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 12:29:54 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/12 21:35:31 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "loggers.h"
 
+
 int main(int ac, char **av)
 {
 	long	*temp_stack;
 	t_stack *stacka;
 	t_stack *stackb;
-	int		chunk_size;
+	// int		chunk_size;
 
 	stacka  = (t_stack *)malloc(sizeof(t_stack));
 	stackb  = (t_stack *)malloc(sizeof(t_stack));
@@ -39,19 +40,28 @@ int main(int ac, char **av)
 	if (!temp_stack)
 		return (0);
 	char **div = ft_split(av[1],' ');
-//	log_str(div);
-	int index = 0;
-	while (div[index])
+
+	int read_index = 0;
+	int	write_index = 0;
+
+	while (div[read_index])
 	{
-		temp_stack[index] = ft_atol(div[index]);
-		if (temp_stack[index] > INT_MAX || temp_stack[index] < INT_MIN)
+		// if (!div[read_index][0])
+		// {
+		// 	printf("SKIPPED\n");
+		// 	read_index ++;
+		// 	continue;
+		// }
+		temp_stack[write_index] = ft_atol(div[read_index]);
+		if (temp_stack[write_index] > INT_MAX || temp_stack[write_index] < INT_MIN)
 		{
 			write(1,"Error\n",ft_strlen("Error\n"));
 			free_pp(div);
 			free(temp_stack);
 			return (0);
 		}
-		index ++;
+		write_index ++;
+		read_index ++;
 	}
 	if (check_duplicate(temp_stack,n_elements) == 1)
 	{
@@ -60,55 +70,14 @@ int main(int ac, char **av)
 		free(temp_stack);
 		return (0);
 	}
-	index = 0;
+	int index = 0;
 	while (index < n_elements)
 	{
 		stack_new_node(&stacka, node_new((int)temp_stack[n_elements - index - 1],0));
 		index ++;
 	}
-	int len_stack = stack_get_len(stacka);
-	bubble_sort(temp_stack, n_elements);
-	generate_chunks(temp_stack, &stacka);
-	chunk_size = chunk_get_size(n_elements);
-	int	chunk_index = 0;
-	if (chunk_size == 0)
-	{
-		printf("**** CHUNK_SIZE_ZERO **** \n");
-		if (n_elements <= 3)
-			sort_three(&stacka);
-		else
-			sort_five(&stacka, &stackb);
-	}
-	else
-	{	
-		// push b
-		while (chunk_index  < chunk_size)
-		{
-			while (chunk_contain(chunk_index, stacka) == 0)
-			{
-				// find number index
-				while (stacka->node->chunk_n != chunk_index)
-					rotate_a(stacka);
-				push_b(stacka, stackb);
-			}
-			chunk_index ++;
-		}
-		// push a 
-		int lenb = stack_get_len(stackb);
-		while (lenb > 0)
-		{
-			while (stackb->node->index != lenb - 1)
-			{
-				if (get_index(stackb, lenb -1) < lenb / 2)
-					rotate_b(stackb);
-				else
-					reverse_rotate_b(stackb);
-			}
-			push_a(stacka, stackb);
-			lenb = stack_get_len(stackb);
-		}
-	}
 
+	mega_sort(stacka, stackb, temp_stack, n_elements);
 	if (stack_is_sorted(stacka) == 0)
 		printf("************* SORTED ******************\n");
 	if (stacka != NULL)
