@@ -75,10 +75,38 @@ int get_len_str(char *str)
 
 int	parse_single_input(char *str,long *tab)
 {
+	char	**div;
+	int		index;
 
+	div = ft_split(str,' ');
+	while (div[index])
+	{
+		tab[index] = ft_atol(div[index]);
+		if (tab[index] > INT_MAX || tab[index] < INT_MIN)
+		{
+			write(1,"Error\n",ft_strlen("Error\n"));
+			free_pp(div);
+			return (1);
+		}
+		index ++;
+	}
+	free_pp(div);
+	return (0);
 }
 
-int	parse_mul_input(char *str, long *tab)
+int	parse_mul_input(char **str, long *tab, int n_elements)
 {
+	int	index;
 
+	index = 0;
+	while (index < n_elements)
+	{
+		tab[index] = ft_atol(str[n_elements - index - 1]);
+		if (tab[index] > INT_MAX || tab[index] < INT_MIN)
+		{
+			write(1,"Error\n",ft_strlen("Error\n"));
+			return (1);
+		}
+	}
+	return (0);
 }

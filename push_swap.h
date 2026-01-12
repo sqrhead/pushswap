@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 21:26:13 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/12 22:11:12 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		check_duplicate(long *tab, int size);
 int		check_input(char *str);
 int		count_input_elements(char *str);
 int		parse_single_input(char *str, long *tab);
-int		parse_mul_input(char *str, long *tab);
+int		parse_mul_input(char **str, long *tab,int n_elements);
 // stack
 void			stack_new_node(t_stack **stack, t_stack_node *node);
 t_stack_node	*node_new(int value, size_t chunk_n);
