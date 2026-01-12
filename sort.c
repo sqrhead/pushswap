@@ -74,14 +74,25 @@ void	sort_three(t_stack **stack)
 		return;
 	log_stack(*stack, 'A');
 }
-size_t	get_smallest(t_stack *stack)
+int	get_smallest(t_stack *stack)
 {
 	t_stack_node	*node;
-	size_t			index;
+	int				index;
+	int				min;
 
+	if (!stack || !stack->node)
+		return (-1);
 	index = 0;
-	node = get_node(stack, index);
-	return (0);
+	node = stack->node;
+	min = node->value;
+	while (node)
+	{
+		if (node->next && node->value < min)
+			min = node->value;
+		index ++;
+		node = node->next;
+	}
+	return (index);
 }
 void	sort_five(t_stack *stacka, t_stack *stackb)
 {	
@@ -91,19 +102,4 @@ void	sort_five(t_stack *stacka, t_stack *stackb)
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
 
-	index = 0;
-	tmp = get_node(stacka, index);
-	while (tmp)
-	{	
-		index ++;
-		tmp2 = get_node(stacka, index);
-		if (tmp2  && tmp2->value < tmp->value)
-			tmp = tmp2;
-		if (!tmp2)
-			break;
-	}
-	while(tmp != get_node(stacka, 0))
-		rotate_a(stacka);
-	push_b(stacka, stackb);
-	sort_three(&stacka);
 }
