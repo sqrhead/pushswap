@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/12 23:24:56 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/13 08:42:10 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main(int ac, char **av)
 		return (0);
 	if (ac == 2)
 	{
-		printf("*** Single Input\n");
 		n_elements = count_input_elements(av[1]);
 		temp_stack = (long *)malloc(sizeof(long) * n_elements);
 		if (!temp_stack)
@@ -46,7 +45,6 @@ int main(int ac, char **av)
 	}
 	else if (ac > 2)
 	{
-		printf("*** Multiple Input\n");
 		n_elements = ac - 1;
 		temp_stack = (long *)malloc(sizeof(long) * n_elements);
 		if (!temp_stack)
@@ -56,33 +54,11 @@ int main(int ac, char **av)
 			return (0);
 		}
 	}
-	printf("*** Out\n");
-
-	// char **div = ft_split(av[1],' ');
-
-	// int read_index = 0;
-	// int	write_index = 0;
-
-	// while (div[read_index])
-	// {
-	// 	// if (!div[read_index][0])
-	// 	// {
-	// 	// 	printf("SKIPPED\n");
-	// 	// 	read_index ++;
-	// 	// 	continue;
-	// 	// }
-	// 	temp_stack[write_index] = ft_atol(div[read_index]);
-	// 	if (temp_stack[write_index] > INT_MAX || temp_stack[write_index] < INT_MIN)
-	// 	{
-	// 		write(1,"Error\n",ft_strlen("Error\n"));
-	// 		free_pp(div);
-	// 		free(temp_stack);
-	// 		return (0);
-	// 	}
-	// 	write_index ++;
-	// 	read_index ++;
-	// }
-	// duplicate check
+	else 
+	{
+		return (0);
+	}
+	
 	if (check_duplicate(temp_stack,n_elements) == 1)
 	{
 		write(1,"Error\n",ft_strlen("Error\n"));
