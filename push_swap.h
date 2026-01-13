@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:32:49 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 12:04:12 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int				words_num(const char *s, char c);
 char			**free_pp(char **split);
 char			**ft_split(char const *s, char c);
 size_t			ft_strlcpy(char *dest, char *src, size_t size);
+void			free_tha_shit(long **temp_stack, t_stack **stacka, t_stack **stackb);
+int				fuck_the_25_lines(int ac, char **av, long **temp_stack, int *n_elements);
+void			fill_stack(t_stack **stack, long **temp_stack, int *n_elements);
 // input check
 int				check_duplicate(long *tab, int size);
 int				check_input(char *str);
@@ -88,7 +91,6 @@ void			reverse_rotate_b(t_stack *stackb);
 void			reverse_rotate_both(t_stack *stacka, t_stack *stackb);
 
 #endif
-
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠍⠋⠻⢿⠷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠁⡘⠠⢀⠈⢷⣯⣛⠿⣷⣄⣀⣀⣤⣤⠤⠤⠤⠤⢤⣤⣄⣀⠀⠀⠀⠀⠀⢀⣠⡤⠾⠿⠉⠉⡁⢀⢈⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

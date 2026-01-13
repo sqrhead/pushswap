@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 10:05:26 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/09 12:23:57 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:01:24 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	swap_a(t_stack *stacka)
 	stacka->node = tmp2;
 	stacka->node->next = tmp;
 	stacka->node->next->next = tmp3;
-
 	write(1,"sa\n",3);
 }
 

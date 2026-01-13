@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
+/*   Updated: 2026/01/13 10:49:10 by fshelna          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 
@@ -8,6 +20,7 @@ void	sort_low(t_stack *stacka, t_stack *stackb, int n_elements)
 	else
 			sort_five(&stacka, &stackb);
 }
+
 void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index)
 {
 	int	lenb;
