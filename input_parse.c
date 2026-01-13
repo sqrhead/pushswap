@@ -1,29 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilities.c                                        :+:      :+:    :+:   */
+/*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:31 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:48:32 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 19:47:48 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_strlen(const char *str)
-{
-    int count;
-
-    count = 0;
-    while (*str)
-    {
-        count ++;
-        str ++;
-    }
-    return (count);
-}
 
 long ft_atol(char *str)
 {
@@ -114,7 +102,8 @@ int	parse_mul_input(char **str, long *tab, int n_elements)
 	index = 0;
 	while (index < n_elements)
 	{
-		tab[index] = ft_atol(str[n_elements - index - 1]);
+		tab[index] = ft_atol(str[n_elements - index]);
+		printf("tab[index] %li\n", tab[index]);
 		if (tab[index] > INT_MAX || tab[index] < INT_MIN)
 		{
 			write(1,"Error\n",ft_strlen("Error\n"));

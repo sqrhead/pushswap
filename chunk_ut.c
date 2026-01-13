@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_ut.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:47:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:47:54 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 19:45:57 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-/*
-*/
 int	chunk_contain(int chunk_n, t_stack *stack)
 {
 	t_stack_node	*tmp;
@@ -46,7 +43,8 @@ int	chunk_get_size(int stack_size)
 	else
 		return (stack_size / 15);
 }
-void generate_chunks(long *tab, t_stack **stack)
+
+void	generate_chunks(long *tab, t_stack **stack)
 {
 	int				i;
 	int				j;
@@ -55,7 +53,7 @@ void generate_chunks(long *tab, t_stack **stack)
 	t_stack_node	*tmp;
 
 	if (!*stack || !(*stack)->node)
-		return;
+		return ;
 	i = 0;
 	j = 0;
 	len = stack_get_len(*stack);
@@ -64,14 +62,12 @@ void generate_chunks(long *tab, t_stack **stack)
 	while (i < len)
 	{
 		while (tmp->value != (int)tab[i])
-		{
 			tmp = tmp->next;
-		}
 		if (i > chunk_len * (j + 1))
-			j ++;
+			j++;
 		tmp->chunk_n = j;
 		tmp->index = i;
 		tmp = (*stack)->node;
-		i ++;
+		i++;
 	}
 }

@@ -6,11 +6,24 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:34 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 14:53:00 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/13 19:46:36 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int ft_strlen(const char *str)
+{
+    int count;
+
+    count = 0;
+    while (*str)
+    {
+        count ++;
+        str ++;
+    }
+    return (count);
+}
 
 int	check_duplicate(long *tab, int size)
 {
