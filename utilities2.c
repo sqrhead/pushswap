@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:34 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:48:35 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:53:00 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,13 @@ int	stack_is_sorted(t_stack *stack)
 	t_stack_node *node;
 
 	if (!stack || !stack->node)
-		return (-1);
+		return (1);
 	node = stack->node;
 	while (node)
 	{
-		if (node->next && node->value > node->next->value)
-			return (1);
+		if (node->value > node->next->value)
+			return (0);
 		node = node->next;
 	}
-	return (0);
+	return (1);
 }
-
