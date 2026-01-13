@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:06:43 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/14 00:32:33 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	fuck_the_25_lines(int ac, char **av, long **temp_stack, int *n_elements)
 		return (1);
 	if (result == 1 || check_duplicate(*temp_stack, *n_elements) == 1)
 	{
-		write(1,"Error\n",ft_strlen("Error\n"));
+		write(2,"Error\n",ft_strlen("Error\n"));
 		return (1);
 	}
 	return (0);
@@ -78,9 +78,9 @@ int main(int ac, char **av)
 		return (0);
 	}
 	fill_stack(&stacka, &temp_stack, &n_elements);
-	log_stack(stacka, 'A');
+	// log_stack(stacka, 'A');
 	mega_sort(stacka, stackb, temp_stack, n_elements);
-	log_stack(stacka, 'A');
+	// log_stack(stacka, 'A');
 	free_tha_shit(&temp_stack, &stacka, &stackb);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:31 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:47:48 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/14 00:35:07 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	parse_single_input(char *str,long *tab)
 		tab[index] = ft_atol(div[index]);
 		if (tab[index] > INT_MAX || tab[index] < INT_MIN)
 		{
-			write(1,"Error\n",ft_strlen("Error\n"));
+			write(2,"Error\n",ft_strlen("Error\n"));
 			free_pp(div);
 			return (1);
 		}
@@ -103,10 +103,10 @@ int	parse_mul_input(char **str, long *tab, int n_elements)
 	while (index < n_elements)
 	{
 		tab[index] = ft_atol(str[n_elements - index]);
-		printf("tab[index] %li\n", tab[index]);
+		// printf("tab[index] %li\n", tab[index]);
 		if (tab[index] > INT_MAX || tab[index] < INT_MIN)
 		{
-			write(1,"Error\n",ft_strlen("Error\n"));
+			write(2,"Error\n",ft_strlen("Error\n"));
 			return (1);
 		}
 		index ++;

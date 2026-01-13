@@ -36,18 +36,18 @@
 // 	}
 // 	printf("\n=======================================================\n");
 // }
-static void log_stack(t_stack *stack, char ws)
-{
-	printf("***** STACK [%c]************************\n",ws);
-	t_stack_node *tmp;
-	tmp = stack->node;
-	while (tmp)
-	{
-		printf("[value :  %i ] [chunk_n :  %ld ] [index :  %ld] s\n",tmp->value, tmp->chunk_n, tmp->index);
-		// printf("chunk:%zu\n",tmp->chunk_n);
-		tmp = tmp->next;
-	}
-}
+// static void log_stack(t_stack *stack, char ws)
+// {
+// 	printf("***** STACK [%c]************************\n",ws);
+// 	t_stack_node *tmp;
+// 	tmp = stack->node;
+// 	while (tmp)
+// 	{
+// 		printf("[value :  %i ] [chunk_n :  %ld ] [index :  %ld] s\n",tmp->value, tmp->chunk_n, tmp->index);
+// 		// printf("chunk:%zu\n",tmp->chunk_n);
+// 		tmp = tmp->next;
+// 	}
+// }
 #endif
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

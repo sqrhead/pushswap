@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:47:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:45:57 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/14 00:35:01 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	chunk_get_size(int stack_size)
 	else if (stack_size <= 50)
 		return (5);
 	else if (stack_size <= 100)
-		return (stack_size / 6);
-	else if (stack_size <= 500)
 		return (stack_size / 20);
+	else if (stack_size <= 500)
+		return (stack_size / 50);
 	else
 		return (stack_size / 15);
 }
