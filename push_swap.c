@@ -6,11 +6,12 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 08:42:10 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/13 10:38:18 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int main(int ac, char **av)
 {
@@ -18,7 +19,7 @@ int main(int ac, char **av)
 	t_stack *stacka;
 	t_stack *stackb;
 	int		n_elements;
-	// int		chunk_size;
+	int 	index;
 
 	stacka  = (t_stack *)malloc(sizeof(t_stack));
 	stackb  = (t_stack *)malloc(sizeof(t_stack));
@@ -26,63 +27,39 @@ int main(int ac, char **av)
 		return (0);
 	stacka->node = NULL;
 	stackb->node = NULL;
-
-	if (ac < 2) // No Input
-	{
-		write(1,"Error\n",ft_strlen("Error\n"));
-		return (0);
-	}
-	if (check_input(av[1]) == 1) // Input not valid
+	n_elements = 0;
+	temp_stack = NULL;
+	if (ac < 2 || check_input(av[1]) == 1)
 		return (0);
 	if (ac == 2)
 	{
-		n_elements = count_input_elements(av[1]);
-		temp_stack = (long *)malloc(sizeof(long) * n_elements);
-		if (!temp_stack)
-			return (0);
-		if (parse_single_input(av[1], temp_stack) == 1)
+		if (initialize_single_input(av, &temp_stack, &n_elements) == 1)
 			return (0);
 	}
 	else if (ac > 2)
 	{
-		n_elements = ac - 1;
-		temp_stack = (long *)malloc(sizeof(long) * n_elements);
-		if (!temp_stack)
+		if (initialize_multi_input(ac, av, &temp_stack, &n_elements) == 1)
 			return (0);
-		if (parse_mul_input(av, temp_stack,	n_elements) == 1)
-		{
-			return (0);
-		}
 	}
 	else 
-	{
 		return (0);
-	}
-	
 	if (check_duplicate(temp_stack,n_elements) == 1)
 	{
 		write(1,"Error\n",ft_strlen("Error\n"));
-		// free_pp(div);
+		free_stack(stacka);
+		free_stack(stackb);
 		free(temp_stack);
 		return (0);
 	}
-	// fill stack
-	int index = 0;
+	index = 0;
 	while (index < n_elements)
 	{
-		stack_new_node(&stacka, node_new((int)temp_stack[n_elements - index - 1],0));
+		stack_new_node(&stacka, node_new((int)temp_stack[n_elements - index - 1], 0));
 		index ++;
 	}
-
 	mega_sort(stacka, stackb, temp_stack, n_elements);
-	if (stack_is_sorted(stacka) == 0)
-		printf("************* SORTED ******************\n");
-
-	printf("********* STACK_FREED *******************\n");
 	free_stack(stacka);
 	free_stack(stackb);
-	// free_stack(stack_b);
-	// free_pp(div);
 	free(temp_stack);
 	return (0);
 }

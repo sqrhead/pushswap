@@ -56,9 +56,7 @@ void generate_chunks(long *tab, t_stack **stack)
 			tmp = tmp->next;
 		}
 		if (i > chunk_len * (j + 1))
-		{
 			j ++;
-		}
 		tmp->chunk_n = j;
 		tmp->index = i;
 		tmp = (*stack)->node;

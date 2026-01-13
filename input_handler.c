@@ -48,7 +48,7 @@ int	check_input(char *str)
 {
 	if (is_input_valid(str) == 1)
 	{
-		write(1,"Error\n",ft_strlen("Error\n"));
+		write(1, "Error\n", ft_strlen("Error\n"));
 		return (1);
 	}
 	return (0);
