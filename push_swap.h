@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:42:13 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/15 20:45:21 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+
 
 typedef struct s_stack_node
 {
@@ -41,16 +42,17 @@ int				ft_issign(char c);
 int				word_len(const char *str, char c);
 int				words_num(const char *s, char c);
 char			**free_pp(char **split);
-char			**ft_split(char const *s, char c);
 size_t			ft_strlcpy(char *dest, char *src, size_t size);
+char			**ft_split(char const *s, char c);
 void			free_tha_shit(long **temp_stack, t_stack **stacka, t_stack **stackb);
 int				fuck_the_25_lines(int ac, char **av, long **temp_stack, int *n_elements);
 void			fill_stack(t_stack **stack, long **temp_stack, int *n_elements);
 // input check
 int				check_duplicate(long *tab, int size);
-int				check_input(char *str);
-int				count_input_elements(char *str);
-int				parse_single_input(char *str, long *tab);
+int				is_input_valid(char *str, int flag);
+int				check_input(char *str, int flag);
+// int				count_input_elements(char *str);
+int				parse_single_input(char *str, long *tab, int nele);
 int				parse_mul_input(char **str, long *tab,int n_elements);
 int				initialize_single_input(char **av, long **temp_stack, int *n_elements);
 int				initialize_multi_input(int ac, char **av, long **temp_stack, int *n_elements);

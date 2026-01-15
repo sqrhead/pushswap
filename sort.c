@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:23 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:42:21 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/15 20:24:58 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	sort_three(t_stack **stack)
 		return (reverse_rotate_a(*stack), swap_a(*stack));
 	else if (n1 > n2 && n1 > n3 && n2 < n3)
 		rotate_a(*stack);
+	else if (n1 < n2 && n1 > n3 && n2 > n3)
+    	reverse_rotate_a(*stack);
 	else if (n1 > n2 && n1 < n3 && n2 < n3)
 		swap_a(*stack);
 }

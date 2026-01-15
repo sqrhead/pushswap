@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:34 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 19:46:36 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/15 20:09:08 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	stack_is_sorted(t_stack *stack)
 	if (!stack || !stack->node)
 		return (1);
 	node = stack->node;
-	while (node)
+	while (node->next)
 	{
 		if (node->value > node->next->value)
 			return (0);

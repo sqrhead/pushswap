@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:47:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/14 00:35:01 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/14 01:06:03 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	chunk_get_size(int stack_size)
 	else if (stack_size <= 10)
 		return (3);
 	else if (stack_size <= 50)
-		return (5);
+		return (15);
 	else if (stack_size <= 100)
 		return (stack_size / 20);
 	else if (stack_size <= 500)
 		return (stack_size / 50);
 	else
-		return (stack_size / 15);
+		return (stack_size / 100);
 }
 
 void	generate_chunks(long *tab, t_stack **stack)
@@ -61,7 +61,7 @@ void	generate_chunks(long *tab, t_stack **stack)
 	tmp = (*stack)->node;
 	while (i < len)
 	{
-		while (tmp->value != (int)tab[i])
+		while (tmp && tmp->value != (int)tab[i])
 			tmp = tmp->next;
 		if (i > chunk_len * (j + 1))
 			j++;

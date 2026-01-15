@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:37 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 18:55:16 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/15 19:09:53 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	initialize_single_input(char **av, long **temp_stack, int *n_elements)
 {
-	*n_elements = count_input_elements(av[1]);
+
+	*n_elements = words_num(av[1], ' ');
 	*temp_stack = (long *)malloc(sizeof(long) * *n_elements);
 	if (!*temp_stack)
 		return (1);
-	if (parse_single_input(av[1], *temp_stack) == 1)
+	if (parse_single_input(av[1], *temp_stack, *n_elements) == 1)
 		return (1);
 	return (0);
 }

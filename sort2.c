@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/14 00:25:09 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/15 20:06:56 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ void	sort_low(t_stack *stacka, t_stack *stackb, int n_elements)
 			sort_five(&stacka, &stackb);
 }
 
-// void	better_high(t_stack *sa, t_stack *sb)
-// {
-
-// }
 int	find_in_chunk_position(t_stack *stack, t_stack_node *node)
 {
 	t_stack_node	*tmp;
@@ -66,6 +62,8 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 	int	lenb;
 	int pos;
 
+	if (stack_is_sorted(stacka))
+		return;
 	while (chunk_index  < chunk_size)
 	{
 		while (chunk_contain(chunk_index, stacka) == 0)

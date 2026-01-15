@@ -33,7 +33,7 @@ test: $(NAME)
 	./$(NAME) "4 67 3 87 23"
 
 test100: $(NAME)
-	@ARG=$$(shuf -i 0-100 -n 100 | tr '\n' ' '); \
+	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
 	echo "Testing with 100 numbers..."; \
 	./$(NAME) "$$ARG" | wc -l
 
