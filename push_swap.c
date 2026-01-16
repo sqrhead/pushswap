@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/16 11:42:04 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/16 12:26:49 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main(int ac, char **av)
 	fill_stack(&stacka, &temp_stack, &n_elements);
 	mega_sort(stacka, stackb, temp_stack, n_elements);
 	log_stack(stacka, 'A');
-	if (stack_is_sorted(stacka) == 0)
+	if (stack_is_sorted(stacka) == 1)
 		printf("########### STACK SORTED #############\n");
 	free_tha_shit(&temp_stack, &stacka, &stackb);
 	return (0);
