@@ -3,7 +3,5 @@
 
 https://www.youtube.com/shorts/LqoLm20ryhY
 
-error : "1" "10 20" "2"
-error : sometimes a 0 is considered empty string
-error : multiple input wrong insertion
-error : found something strange with single input parsing
+error : sort fucked up 
+todo  : buy a chair and a rope 

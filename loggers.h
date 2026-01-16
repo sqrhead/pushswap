@@ -36,17 +36,17 @@
 // 	}
 // 	printf("\n=======================================================\n");
 // }
-// static void log_stack(t_stack *stack, char ws)
-// {
-// 	printf("***** STACK [%c]************************\n",ws);
-// 	t_stack_node *tmp;
-// 	tmp = stack->node;
-// 	while (tmp)
-// 	{
-// 		printf("[value :  %i ] [chunk_n :  %ld ] [index :  %ld] \n",tmp->value, tmp->chunk_n, tmp->index);
-// 		// printf("chunk:%zu\n",tmp->chunk_n);
-// 		tmp = tmp->next;
-// 	}
-// 	printf("***** TOP OF THE STACK : [%i] ************************\n",stack->node->value);
-// }
+static void log_stack(t_stack *stack, char ws)
+{
+	printf("***** STACK [%c]************************\n",ws);
+	t_stack_node *tmp;
+	tmp = stack->node;
+	while (tmp)
+	{
+		printf("[value :  %i ] [chunk_n :  %ld ] [index :  %ld] \n",tmp->value, tmp->chunk_n, tmp->index);
+		// printf("chunk:%zu\n",tmp->chunk_n);
+		tmp = tmp->next;
+	}
+	printf("***** TOP OF THE STACK : [%i] ************************\n",stack->node->value);
+}
 #endif

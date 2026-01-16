@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:02 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/15 21:19:52 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/16 09:54:10 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ int	is_input_valid(char *str, int flag)
 			index ++;
 		if (str[index] && ft_isspace(str[index]) == 1)
 			return(1);
-		if (flag == 1 && ft_isdigit(str[index - 1]  == 1 && ft_isdigit(str[index] == 0)))
-		{
-			printf(">> ERROR\n");
-			return (1);
+		if (flag == 1 && str[index] && ft_isspace(str[index]) == 0)
+		{	
+			while (ft_isspace(str[index]) == 0) 
+				index ++;
+			if (str[index])
+				return (1);
 		}
 	}
 	return (0);

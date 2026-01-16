@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 08:54:39 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/15 20:34:53 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/16 11:42:04 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ int main(int ac, char **av)
 	}
 	fill_stack(&stacka, &temp_stack, &n_elements);
 	mega_sort(stacka, stackb, temp_stack, n_elements);
-	// log_stack(stacka, 'A');
+	log_stack(stacka, 'A');
+	if (stack_is_sorted(stacka) == 0)
+		printf("########### STACK SORTED #############\n");
 	free_tha_shit(&temp_stack, &stacka, &stackb);
 	return (0);
 }

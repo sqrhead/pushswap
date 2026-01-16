@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/15 20:06:56 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/16 12:08:39 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 
 	if (stack_is_sorted(stacka))
 		return;
-	while (chunk_index  < chunk_size)
+	while (chunk_index  < stack_get_len(stacka) / chunk_size)
 	{
 		while (chunk_contain(chunk_index, stacka) == 0)
 		{
@@ -75,8 +75,6 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 					rotate_a(stacka);
 				else
 					reverse_rotate_a(stacka);
-				// rotate_a(stacka);
-
 			}
 			push_b(stacka, stackb);
 		}

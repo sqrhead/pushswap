@@ -34,12 +34,12 @@ test: $(NAME)
 
 test100: $(NAME)
 	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
-	echo "Testing with 100 numbers..."; \
-	./$(NAME) "$$ARG" | wc -l
+	#echo "Testing with 100 numbers..."; \
+	./$(NAME) "$$ARG"
 
 test500: $(NAME)
 	@ARG=$$(shuf -i 0-5000 -n 500 | tr '\n' ' '); \
 	echo "Testing with 500 numbers..."; \
-	./$(NAME) "$$ARG" | wc -l
+	./$(NAME) "$$ARG" 
 
 .PHONY: all clean fclean re test test100 test500
