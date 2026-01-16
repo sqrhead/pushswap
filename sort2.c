@@ -6,7 +6,7 @@
 /*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/16 12:25:21 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/16 12:31:21 by fshelna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 	int	lenb;
 	int pos;
 
-	if (stack_is_sorted(stacka))
-		return;
+	// if (stack_is_sorted(stacka))
+	// 	return;
 	while (chunk_index  < stack_get_len(stacka) / chunk_size)
 	{
 		while (chunk_contain(chunk_index, stacka) == 0)
@@ -83,7 +83,7 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 	lenb = stack_get_len(stackb);
 	while (lenb > 0)
 	{
-		while (stackb->node->index != (size_t)(lenb - 1))
+		while ((int)stackb->node->index != lenb - 1)
 		{
 			if (stackb->node->next && stackb->node->next->index == (size_t)(lenb - 1))
 			{
@@ -96,6 +96,6 @@ void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index
 				reverse_rotate_b(stackb);
 		}
 		push_a(stacka, stackb);
-		lenb = stack_get_len(stackb);
+		lenb --;
 	}
 }
