@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/18 19:32:00 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 22:18:34 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct s_stack
 {
 	struct s_stack_node		*node;
 }	t_stack;
+
+// *[head] * * * * * *[tail]
+// *[tail] * * * * * *[head]
 
 // utilities
 int				ft_strlen(const char *str);
@@ -59,7 +62,6 @@ void			stack_new_node(t_stack **stack, t_stack_node *node);
 t_stack_node	*node_new(int value, size_t chunk_n);
 t_stack_node	*stack_get_head(t_stack *stack);
 int				stack_get_len(t_stack *stack);
-void			stack_pop(t_stack *stack);
 void			free_stack(t_stack *stack);
 t_stack_node	*get_node(t_stack *stack, size_t index);
 int				stack_is_sorted(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:28 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/18 14:49:56 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 20:01:21 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ void	stack_new_node(t_stack **stack, t_stack_node *node)
 	tmp = (*stack)->node;
 	(*stack)->node = node;
 	(*stack)->node->next = tmp;
-}
-
-void	stack_pop(t_stack *stack)
-{
-	t_stack_node	*tmp;
-
-	if (!stack || !stack->node)
-		return ;
-	tmp = stack->node;
-	stack->node = stack->node->next;
-	free(tmp);
 }
 
 int	stack_get_len(t_stack *stack)
