@@ -6,7 +6,7 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/18 19:55:49 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 19:56:44 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	push_to_b(t_stack *sa, t_stack *sb, int chunksize)
 			rotate_a(sa);
 	}
 }
+
 void	sort_high(t_stack *sa, t_stack *sb, int chunksize)
 {
 	int	target;
