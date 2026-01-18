@@ -6,19 +6,19 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:17 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 13:46:46 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 15:49:46 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void rotate(t_stack *stack)
+static void	rotate(t_stack *stack)
 {
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
-	if (!stack || !stack->node)
-		return;
 
+	if (!stack || !stack->node)
+		return ;
 	tmp = stack->node;
 	stack->node = stack->node->next;
 	tmp2 = stack->node;
@@ -29,6 +29,7 @@ static void rotate(t_stack *stack)
 	tmp2->next = tmp;
 	tmp2->next->next = NULL;
 }
+
 void	rotate_a(t_stack *stacka)
 {
 	rotate(stacka);
@@ -38,7 +39,7 @@ void	rotate_a(t_stack *stacka)
 void	rotate_b(t_stack *stackb)
 {
 	rotate(stackb);
-	write(1,"rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
 void	rotate_both(t_stack *stacka, t_stack *stackb)

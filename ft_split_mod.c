@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_mod.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:47:58 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:47:58 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/18 14:27:20 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	}
 	return (count);
 }
-
 
 char	**ft_split(char const *s, char c)
 {

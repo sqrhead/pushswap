@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:25 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/16 12:31:21 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:41:55 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,45 +57,79 @@ t_stack_node	*find_node_by_nchunk(t_stack *stack, int chunk_index)
 	return (NULL);
 }
 
-void	sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index)
+t_stack_node	*node_get_closest(t_stack *stack, size_t index)
 {
-	int	lenb;
-	int pos;
+	t_stack_node	*node;
+	t_stack_node	*lnode;
+	int counter;
 
-	// if (stack_is_sorted(stacka))
-	// 	return;
-	while (chunk_index  < stack_get_len(stacka) / chunk_size)
+	counter = 0;
+	if (!stack || !stack->node)
+		return (NULL);
+	node = stack->node;
+	lnode = get_node(stack, stack_get_len(stack) - counter  - 1);
+	while (lnode != node || node || lnode)
 	{
-		while (chunk_contain(chunk_index, stacka) == 0)
-		{
-			while (stacka->node->chunk_n != (size_t)chunk_index)
-			{
-				pos = find_in_chunk_position(stacka,find_node_by_nchunk(stacka, chunk_index));
-				if (pos < stack_get_len(stacka) / 2)
-					rotate_a(stacka);
-				else
-					reverse_rotate_a(stacka);
-			}
-			push_b(stacka, stackb);
-		}
-		chunk_index ++;
+		if (node->index == index)
+			return (node);
+		if (lnode->index == index)
+			return (lnode);
+		node = node->next;
+		counter ++;
+		lnode = get_node(stack, stack_get_len(stack) - counter - 1);
 	}
-	lenb = stack_get_len(stackb);
-	while (lenb > 0)
-	{
-		while ((int)stackb->node->index != lenb - 1)
-		{
-			if (stackb->node->next && stackb->node->next->index == (size_t)(lenb - 1))
-			{
-				swap_b(stackb);
-				continue ;
-			}
-			if (get_index(stackb, lenb -1) < (size_t)(lenb / 2))
-				rotate_b(stackb);
-			else
-				reverse_rotate_b(stackb);
-		}
-		push_a(stacka, stackb);
-		lenb --;
-	}
+	return (NULL);
+}
+
+
+void sort_high(t_stack *sa, t_stack *sb, int chunksize)
+{
+    int	i = 0;
+
+    while (stack_get_len(sa) > 0)
+    {
+        if (sa->node->index <= (size_t)i)
+        {
+            push_b(sa, sb);
+            // Optimization: If it's in the lower half of the range,
+            // rotate it to the bottom of B to keep B somewhat sorted.
+			if (stack_get_len(sb) > 1)
+            	rotate_b(sb);
+            i++;
+        }
+        else if (sa->node->index <= (size_t)(i + chunksize))
+        {
+            push_b(sa, sb);
+            i++;
+        }
+        else
+        {
+            // Find the most efficient way to get a number from the range to the top
+            // Usually, a simple rotation works here, but a "find_closest" logic
+            // is even better for the move count.
+            rotate_a(sa);
+        }
+    }
+
+    // Phase 2: Push from B back to A
+    // We always look for the largest remaining number to keep A sorted.
+    while (stack_get_len(sb) > 0)
+    {
+        int target = stack_get_len(sb) - 1;
+        int pos = get_index(sb, target);
+        int size = stack_get_len(sb);
+
+        // Bring the target (max) to the top of B
+        if (pos <= size / 2)
+        {
+            while ((int)sb->node->index != target)
+                rotate_b(sb);
+        }
+        else
+        {
+            while ((int)sb->node->index != target)
+                reverse_rotate_b(sb);
+        }
+        push_a(sa, sb);
+    }
 }

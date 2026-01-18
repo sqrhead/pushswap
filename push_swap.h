@@ -6,18 +6,17 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 11:51:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/15 20:45:21 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:40:11 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 
 typedef struct s_stack_node
 {
@@ -25,12 +24,12 @@ typedef struct s_stack_node
 	size_t				chunk_n;
 	size_t				index;
 	struct s_stack_node	*next;
-} t_stack_node;
+}	t_stack_node;
 
 typedef struct s_stack
 {
 	struct s_stack_node		*node;
-} t_stack;
+}	t_stack;
 
 // utilities
 int				ft_strlen(const char *str);
@@ -44,18 +43,17 @@ int				words_num(const char *s, char c);
 char			**free_pp(char **split);
 size_t			ft_strlcpy(char *dest, char *src, size_t size);
 char			**ft_split(char const *s, char c);
-void			free_tha_shit(long **temp_stack, t_stack **stacka, t_stack **stackb);
-int				fuck_the_25_lines(int ac, char **av, long **temp_stack, int *n_elements);
+void			free_tha_shit(long **t, t_stack **stacka, t_stack **stackb);
+int				fuck_the_25_lines(int ac, char **av, long **ts, int *nele);
 void			fill_stack(t_stack **stack, long **temp_stack, int *n_elements);
 // input check
 int				check_duplicate(long *tab, int size);
 int				is_input_valid(char *str, int flag);
 int				check_input(char *str, int flag);
-// int				count_input_elements(char *str);
 int				parse_single_input(char *str, long *tab, int nele);
-int				parse_mul_input(char **str, long *tab,int n_elements);
-int				initialize_single_input(char **av, long **temp_stack, int *n_elements);
-int				initialize_multi_input(int ac, char **av, long **temp_stack, int *n_elements);
+int				parse_mul_input(char **str, long *tab, int n_elements);
+int				initialize_single_input(char **av, long **ts, int *nele);
+int				initialize_multi_input(int ac, char **av, long **ts, int *nele);
 // stack
 void			stack_new_node(t_stack **stack, t_stack_node *node);
 t_stack_node	*node_new(int value, size_t chunk_n);
@@ -73,22 +71,22 @@ int				chunk_contain(int chunk_n, t_stack *stack);
 
 // sort
 void			bubble_sort(long *tab, int len);
-void 			sort_three(t_stack **stack);
+void			sort_three(t_stack **stack);
 void			sort_five(t_stack **stacka, t_stack **stackb);
 void			mega_sort(t_stack *sa, t_stack *sb, long *ts, int nele);
-void			sort_high(t_stack *stacka, t_stack *stackb, int chunk_size, int chunk_index);
+void			sort_high(t_stack *sa, t_stack *sb, int chunksize);
 void			sort_low(t_stack *stacka, t_stack *stackb, int n_elements);
-void			rotate_to_target(t_stack **stack, t_stack_node *target, int pos, int len);
+void			rottotarget(t_stack **s, t_stack_node *t, int pos, int len);
 // commands
-void			swap_a(t_stack *stacka); // swap first 2 elements on stack 'a', nothing if one or less
-void			swap_b(t_stack *stackb); // same for b
-void			swap_both(t_stack *stacka, t_stack *stackb); // both of them
-void			push_a(t_stack *stacka, t_stack *stackb); // first element from 'b' to 'a'
-void			push_b(t_stack *stacka, t_stack *stackb); // first element from 'a' to 'b'
-void			rotate_a(t_stack *stacka); // shift up, first become last
+void			swap_a(t_stack *stacka);
+void			swap_b(t_stack *stackb);
+void			swap_both(t_stack *stacka, t_stack *stackb);
+void			push_a(t_stack *stacka, t_stack *stackb);
+void			push_b(t_stack *stacka, t_stack *stackb);
+void			rotate_a(t_stack *stacka);
 void			rotate_b(t_stack *stackb);
 void			rotate_both(t_stack *stacka, t_stack *stackb);
-void			reverse_rotate_a(t_stack *stacka); // shift down, last become first
+void			reverse_rotate_a(t_stack *stacka);
 void			reverse_rotate_b(t_stack *stackb);
 void			reverse_rotate_both(t_stack *stacka, t_stack *stackb);
 

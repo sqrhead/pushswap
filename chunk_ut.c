@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_ut.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:47:54 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/16 12:10:31 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/18 00:25:07 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	chunk_get_size(int stack_size)
 	else if (stack_size <= 100)
 		return (stack_size / 6);
 	else if (stack_size <= 500)
-		return (stack_size / 20);
+		return (stack_size / 15);
 	else
-		return (stack_size / 10);
+		return (stack_size / 20);
 }
 
 void	generate_chunks(long *tab, t_stack **stack)

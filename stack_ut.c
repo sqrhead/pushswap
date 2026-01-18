@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ut.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:28 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 10:48:29 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/18 14:49:56 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,33 @@ void	stack_new_node(t_stack **stack, t_stack_node *node)
 
 	if (!*stack)
 	{
-		*stack = (t_stack*)malloc(sizeof(t_stack));
+		*stack = (t_stack *)malloc(sizeof(t_stack));
 		if (!*stack)
-			return;
+			return ;
 		(*stack)->node = node;
 		(*stack)->node->next = NULL;
-		return;
+		return ;
 	}
 	tmp = (*stack)->node;
 	(*stack)->node = node;
 	(*stack)->node->next = tmp;
 }
+
 void	stack_pop(t_stack *stack)
 {
 	t_stack_node	*tmp;
 
 	if (!stack || !stack->node)
-		return;
+		return ;
 	tmp = stack->node;
 	stack->node = stack->node->next;
 	free(tmp);
 }
+
 int	stack_get_len(t_stack *stack)
 {
-	int	len;
-	t_stack_node *tmp;
+	int				len;
+	t_stack_node	*tmp;
 
 	len = 0;
 	if (!stack)
@@ -55,12 +57,14 @@ int	stack_get_len(t_stack *stack)
 	}
 	return (len);
 }
+
 void	free_stack(t_stack *stack)
 {
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
+
 	if (!stack)
-		return;
+		return ;
 	tmp = stack->node;
 	while (tmp)
 	{
@@ -70,6 +74,7 @@ void	free_stack(t_stack *stack)
 	}
 	free(stack);
 }
+
 t_stack_node	*node_new(int value, size_t chunk_n)
 {
 	t_stack_node	*node;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshelna <fshelna@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:02 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/16 09:54:10 by fshelna          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:17:00 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_isdigit(char c)
 	return (1);
 }
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if (c == ' ' || (c >= 9 && c <= 13))
 		return (0);
 	return (1);
 }
 
-int ft_issign(char c)
+int	ft_issign(char c)
 {
 	if (c == '-' || c == '+')
 		return (0);
@@ -35,40 +35,65 @@ int ft_issign(char c)
 
 int	is_input_valid(char *str, int flag)
 {
-	int	index;
+	int	i;
 
-	index = 0;
+	i = 0;
 	if (!str)
 		return (1);
-	while (str[index])
+	while (str[i])
 	{
-		while (ft_isspace(str[index]) == 0)
-			index ++;
-		if (ft_issign(str[index]) == 0 && str[index + 1] && ft_isdigit(str[index + 1]) == 0)
-			index ++;
-		if (str[index] && ft_isdigit(str[index]) == 1)
+		while (ft_isspace(str[i]) == 0)
+			i ++;
+		if (ft_issign(str[i]) == 0 && str[i + 1] && ft_isdigit(str[i + 1]) == 0)
+			i ++;
+		if (str[i] && ft_isdigit(str[i]) == 1)
 			return (1);
-		while(ft_isdigit(str[index]) == 0)
-			index ++;
-		if (str[index] && ft_isspace(str[index]) == 1)
-			return(1);
-		if (flag == 1 && str[index] && ft_isspace(str[index]) == 0)
-		{	
-			while (ft_isspace(str[index]) == 0) 
-				index ++;
-			if (str[index])
-				return (1);
+		while (ft_isdigit(str[i]) == 0)
+			i ++;
+		if (str[i] && ft_isspace(str[i]) == 1)
+			return (1);
+		if (flag == 1 && str[i] && ft_isspace(str[i]) == 0)
+		{
+			while (ft_isspace(str[i]) == 0)
+				i ++;
+			return (str[i] != '\0');
 		}
 	}
 	return (0);
 }
 
+// int	is_input_valid(char *str, int flag)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!str || !str[i])
+// 		return (1);
+// 	while (str[i])
+// 	{
+// 		while (str[i] && ft_isspace(str[i]) == 0)
+// 			i++;
+// 		if (ft_issign(str[i]) == 0 && str[i + 1] && ft_isdigit(str[i + 1]) == 0)
+// 			i++;
+// 		if (!str[i] || ft_isdigit(str[i]) == 1)
+// 			return (1);
+// 		while (str[i] && ft_isdigit(str[i]) == 0)
+// 			i++;
+// 		if (str[i] && ft_isspace(str[i]) == 1)
+// 			return (1);
+// 		if (flag == 1 && str[i])
+// 		{
+// 			while (str[i] && ft_isspace(str[i]) == 0)
+// 				i++;
+// 			return (str[i] != '\0');
+// 		}
+// 	}
+// 	return (0);
+// }
+
 int	check_input(char *str, int flag)
 {
 	if (is_input_valid(str, flag) == 1)
-	{
-		// write(2, "Error\n", 6);
 		return (1);
-	}
 	return (0);
 }

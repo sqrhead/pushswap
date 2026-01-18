@@ -28,18 +28,6 @@ fclean: clean
 
 re: fclean all
 
-# Testing rules
-test: $(NAME)
-	./$(NAME) "4 67 3 87 23"
-
-test100: $(NAME)
-	@ARG=$$(shuf -i 0-99 -n 100 | tr '\n' ' '); \
-	#echo "Testing with 100 numbers..."; \
-	./$(NAME) "$$ARG"
-
-test500: $(NAME)
-	@ARG=$$(shuf -i 0-5000 -n 500 | tr '\n' ' '); \
-	echo "Testing with 500 numbers..."; \
-	./$(NAME) "$$ARG" 
+# ARG=$(shuf -i 0-500 -n 100 | tr '\n' ' ');
 
 .PHONY: all clean fclean re test test100 test500

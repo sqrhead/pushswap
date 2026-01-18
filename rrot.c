@@ -6,20 +6,20 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:20 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/13 13:47:20 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 14:45:36 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void reverse_rotate(t_stack *stack)
+static	void	reverse_rotate(t_stack *stack)
 {
 	t_stack_node	*tmp;
 	t_stack_node	*tmp2;
 	t_stack_node	*tmp3;
-	if (!stack || !stack->node)
-		return;
 
+	if (!stack || !stack->node)
+		return ;
 	tmp = stack->node;
 	tmp2 = stack->node;
 	while (tmp2->next->next)

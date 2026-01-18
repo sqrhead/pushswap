@@ -6,33 +6,32 @@
 /*   By: sqrhead <sqrhead@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:37 by fshelna           #+#    #+#             */
-/*   Updated: 2026/01/15 19:09:53 by sqrhead          ###   ########.fr       */
+/*   Updated: 2026/01/18 14:39:10 by sqrhead          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	initialize_single_input(char **av, long **temp_stack, int *n_elements)
+int	initialize_single_input(char **av, long **ts, int *nele)
 {
-
-	*n_elements = words_num(av[1], ' ');
-	*temp_stack = (long *)malloc(sizeof(long) * *n_elements);
-	if (!*temp_stack)
+	*nele = words_num(av[1], ' ');
+	*ts = (long *)malloc(sizeof(long) * *nele);
+	if (!*ts)
 		return (1);
-	if (parse_single_input(av[1], *temp_stack, *n_elements) == 1)
+	if (parse_single_input(av[1], *ts, *nele) == 1)
 		return (1);
 	return (0);
 }
 
-int	initialize_multi_input(int ac, char **av, long **temp_stack, int *n_elements)
+int	initialize_multi_input(int ac, char **av, long **ts, int *nele)
 {
-	int result;
+	int	result;
 
 	result = 0;
-	*n_elements = ac - 1;
-	*temp_stack = (long *)malloc(sizeof(long) * *n_elements);
-	if (!*temp_stack)
+	*nele = ac - 1;
+	*ts = (long *)malloc(sizeof(long) * *nele);
+	if (!*ts)
 		return (1);
-	result = parse_mul_input(av, *temp_stack, *n_elements);
+	result = parse_mul_input(av, *ts, *nele);
 	return (result);
 }
